@@ -8,7 +8,7 @@ import style__leaflet from 'leaflet/dist/leaflet.css';
 import style__markercluster from 'leaflet.markercluster/dist/MarkerCluster.css';
 import style from './scss/main.scss';
 import style__autocomplete from './scss/autocomplete.css';
-import { fetchWebcams, fetchDistricts } from './api/api.js';
+import { fetchWebcams, fetchWeatherForecast, fetchDistricts } from './api/api.js';
 import { autocomplete } from './custom/autocomplete.js'
 
 //delete L.Icon.Default.prototype._getIconUrl;
@@ -36,6 +36,7 @@ class OpendatahubWebcams extends HTMLElement {
 
         /* Requests */
         this.fetchWebcams = fetchWebcams.bind(this);
+        this.fetchWeatherForecast = fetchWeatherForecast.bind(this);
         this.fetchDistricts = fetchDistricts.bind(this);
         this.autocomplete = autocomplete.bind(this);
 
