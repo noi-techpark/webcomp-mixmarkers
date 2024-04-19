@@ -1,0 +1,75 @@
+{
+  "title": "Webcams Visualization",
+  "shortName": "Webcams",
+  "description": "A simple map that shows webcams available from Open Data Hub",
+  "descriptionAbstract": "A simple map that shows webcams available from Open Data Hub",
+  "license": "AGPL-3.0-or-later",
+  "repositoryUrl": "https://github.com/noi-techpark/webcomp-webcams.git",
+  "copyrightHolders": [
+    {
+      "name": "NOI",
+      "email": "info@noi.bz.it",
+      "organization": "NOI S.p.A",
+      "organizationUrl": "https://noi.bz.it"
+    }
+  ],
+  "authors": [
+    {
+      "name": "Rudi Thoeni",
+      "email": "r.thoeni@noi.bz.it",
+      "organization": "NOI S.p.A",
+      "organizationUrl": "https://noi.bz.it"
+    }
+  ],
+  "image": "wcs-logo.png",
+  "searchTags": [
+    "map"
+  ],
+  "dist": {
+    "basePath": "dist",
+    "files": [
+      "webcomp-webcams.min.js"
+    ],
+    "scripts": [
+    ]
+  },
+  "configuration": {
+    "tagName": "webcomp-webcams",
+    "options": [
+      {
+        "key": "centermap",
+        "type": "text",
+        "label": "latitude and longitude: ex. 46.7728692,10.7916716",
+        "required": false,
+        "options": {
+          "default": "46.7728692,10.7916716"
+        }
+      },
+      {
+        "key": "zoommap",
+        "type": "text",
+        "label": "Zoom level of the map example 10",
+        "required": false,
+        "options": {
+          "default": "10"
+        }
+      },
+      {
+        "key": "source",
+        "type": "multiselect",
+        "label": "Sources of the webcams",
+        "required": false,
+        "options": {
+          "values": [
+            "idm",
+            "lts",
+            "dss",
+            "panomax",
+            "panocloud",
+            "feratel"
+          ]
+        }
+      }
+    ]
+  }
+}
