@@ -43,11 +43,10 @@ export async function fetchWebcams(source) {
 export async function fetchWeatherForecast(source) {
 	return callGet("/Weather/Forecast", {
             pagesize: 0,
-		    source: source != null ? source.toString() : '',
 			origin: config.ORIGIN
 		})
 		.then(response => {
-			this.webcams = response.Items;
+			this.weather = response;
 		})
 		.catch(e => {
 			console.log(e)
@@ -62,6 +61,20 @@ export async function fetchDistricts(fields) {
     })
     .then(response => {
         this.districts = response;
+    })
+    .catch(e => {
+        console.log(e)
+        throw e;
+    });
+}
+
+export async function fetchMunicipality(fields) {
+    return callGet("/Municipality", {
+        origin: config.ORIGIN,
+        fields: fields
+    })
+    .then(response => {
+        this.municipalities = response;
     })
     .catch(e => {
         console.log(e)

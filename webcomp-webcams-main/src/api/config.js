@@ -6,5 +6,5 @@ export default {
 	API_BASE_URL: 'https://tourism.api.opendatahub.com/v1',
 	//API_BASE_URL: 'https://api.tourism.testingmachine.eu/v1',
 	//API_BASE_URL: 'https://localhost:5001/v1',
-	ORIGIN: 'webcomp-webcams'
+	ORIGIN: 'webcomp-weatherforecast'
 };
