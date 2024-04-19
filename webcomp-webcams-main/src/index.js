@@ -149,7 +149,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
 
 
         
-            const popupbody = '<div class="webcampopup">test</div><div class="webcampopuptext"><div><b>' + weatherforecasttext + '</b></div></div>';
+            const popupbody = '<div class="webcampopup">Forecast</div><div class="webcampopuptext"><div><b>' + weatherforecasttext + '</b></div></div>';
             let popup = L.popup().setContent(popupbody);
         
             // specify popup options 
