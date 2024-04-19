@@ -123,9 +123,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
             const pos = [
                 municipality["GpsPoints.position"].Latitude, 
                 municipality["GpsPoints.position"].Longitude
-            ];
-                
-            var name = municipality["Shortname"];
+            ]; 
 
             let icon = L.divIcon({
                 //html: '<div class="marker">' + webcamhtml + '</div>',
@@ -140,23 +138,41 @@ class OpendatahubWeatherForecast extends HTMLElement {
             
             const forecastdaily = result.ForeCastDaily;
             let weatherforecasttext = '';
+            let weatherforecastpic = '';
 
+            /*
             forecastdaily.map(myforecst => {
                 //console.log(myforecst['Date']);
                 //console.log(myforecst['WeatherDesc']);
                 weatherforecasttext += myforecst['Date'] + ": " + myforecst['WeatherDesc'] + ",";
+                weatherforecastpic += myforecst['WeatherImgUrl'];
+            });
+            */
+
+
+          /*  forecastdaily.forEach(myforecst => {
+                weatherforecasttext += myforecst['Date'] + ": " + myforecst['WeatherDesc'] + ",";
+                //weatherforecastpic += '<a href="' + myforecst['WeatherImgUrl'] + '">Link to Image</a>';
+            });
+*/
+            forecastdaily.forEach(myforecst => {
+                weatherforecasttext += myforecst['Date'] + ": " + myforecst['WeatherDesc'] + ",";
+                weatherforecastpic += '<img class="weather-image" src="' + myforecst['WeatherImgUrl'] + '">';
             });
 
-
+            //const webcamhtml = '<img class="webcampreview" src="' + imageurl + '" title="' + webcamname + '">'
         
-            const popupbody = '<div class="webcampopup">Forecast</div><div class="webcampopuptext"><div><b>' + weatherforecasttext + '</b></div></div>';
+            const popupbody = '<div class="webcampopup">' + weatherforecastpic + '</div><div class="webcampopuptext"><div><b>' + weatherforecasttext + '</b></div></div>';
             let popup = L.popup().setContent(popupbody);
         
+
+            var gifElement = document.createElement('img');
+
             // specify popup options 
             var customOptions =
                 {
-                'minWidth': '350',
-                'maxWidth': '450',
+                'minWidth': '300',
+                'maxWidth': '350',
                 'border-radius': '0.75em',
                 'padding': '0px'
                 }
