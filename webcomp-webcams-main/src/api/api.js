@@ -10,7 +10,7 @@ export function callGet(path, params) {
 	// console.log("call params = ");
 	// console.log(params);
 	return axios
-		.get(config.API_BASE_URL + path, {
+		.get(config.turism.API_BASE_URL + path, {
 			params: params
 		})
 		.then(function(response) {

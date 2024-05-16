@@ -1,0 +1,31 @@
+
+.sidebar {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  right: -250px; /* Nascondi inizialmente la sidebar */
+  background-color: #f1f1f1;
+  padding-top: 20px;
+  transition: right 0.3s ease;
+  z-index: 1000; /* Assicura che la sidebar sia in primo piano */
+}
+
+.sidebar button {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  z-index: 1001;
+}

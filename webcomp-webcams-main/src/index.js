@@ -9,13 +9,14 @@ import style__markercluster from 'leaflet.markercluster/dist/MarkerCluster.css';
 import style from './scss/main.scss';
 import style__autocomplete from './scss/autocomplete.css';
 import { fetchWeatherForecast, fetchMunicipality } from './api/api.js';
+import { fetchCreative } from './api/industries';
 import { autocomplete } from './custom/autocomplete.js'
 
 //delete L.Icon.Default.prototype._getIconUrl;
 
 class OpendatahubWeatherForecast extends HTMLElement {
     constructor() {
-        super();         
+        super();
 
         this.map_center = [46.7728692,10.7916716];
         this.map_zoom = 10;
@@ -31,7 +32,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
             this.map_zoom = this.zoommap;
         }
         //this.map_layer = "https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png";
-        this.map_layer = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";        
+        this.map_layer = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
         this.map_attribution = '<a target="_blank" href="https://opendatahub.com">OpenDataHub.com</a> | &copy; <a target="_blank" href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a target="_blank" href="https://carto.com/attribution">CARTO</a>';
 
         /* Requests */
@@ -95,35 +96,58 @@ class OpendatahubWeatherForecast extends HTMLElement {
         this.render();
 
         this.initializeMap();
-        this.callApiDrawMap();
+        this.callForecastApiDrawMap();
+        this.callIndustriesApiDrawMap();
     }
 
     async initializeMap() {
         let root = this.shadowRoot;
         let mapref = root.getElementById('map');
-    
-        this.map = L.map(mapref, { 
-          zoomControl: false 
+
+        this.map = L.map(mapref, {
+          zoomControl: false
         }).setView(this.map_center, this.map_zoom);
-    
+
         L.tileLayer(this.map_layer, {
           attribution: this.map_attribution
         }).addTo(this.map);
     }
- 
 
-    async callApiDrawMap() {
+    /*
+    if (firstButton == 0){ callApiDrawMap() }
+    else if (firstButton == 1){}
+    else{}
+  */
+  connectedCallback() {
+    this.render();
+
+    this.initializeMap();
+
+    // Aggiunta degli event listener ai bottoni nella classe index.html
+    const showWeatherButton = this.shadowRoot.getElementById('showWeatherForecast');
+    const showIndustriesButton = this.shadowRoot.getElementById('showCreativeIndustries');
+
+    showWeatherButton.addEventListener('click', () => {
+      this.callForecastApiDrawMap();
+    });
+
+    showIndustriesButton.addEventListener('click', () => {
+      this.callIndustriesApiDrawMap();
+    });
+  }
+
+    async callForecastApiDrawMap() {
         await this.fetchWeatherForecast();
         await this.fetchMunicipality('Detail.it.Title,GpsPoints.position,IstatNumber');
 
         let columns_layer_array = [];
-    
+
         this.municipalities.map(municipality => {
-              
+
             const pos = [
-                municipality["GpsPoints.position"].Latitude, 
+                municipality["GpsPoints.position"].Latitude,
                 municipality["GpsPoints.position"].Longitude
-            ]; 
+            ];
 
             let icon = L.divIcon({
                 //html: '<div class="marker">' + webcamhtml + '</div>',
@@ -133,9 +157,9 @@ class OpendatahubWeatherForecast extends HTMLElement {
 
             const myweatherforecast = this.weather;
 
-         
+
             let result = myweatherforecast.find(o => o['MunicipalityIstatCode'] === municipality['IstatNumber']);
-            
+
             const forecastdaily = result.ForeCastDaily;
             let weatherforecasttext = '';
             let weatherforecastpic = '';
@@ -161,14 +185,14 @@ class OpendatahubWeatherForecast extends HTMLElement {
             });
 
             //const webcamhtml = '<img class="webcampreview" src="' + imageurl + '" title="' + webcamname + '">'
-        
+
             const popupbody = '<div class="webcampopup">' + weatherforecastpic + '</div><div class="webcampopuptext"><div><b>' + weatherforecasttext + '</b></div></div>';
             let popup = L.popup().setContent(popupbody);
-        
+
 
             var gifElement = document.createElement('img');
 
-            // specify popup options 
+            // specify popup options
             var customOptions =
                 {
                 'minWidth': '300',
@@ -180,13 +204,57 @@ class OpendatahubWeatherForecast extends HTMLElement {
             let marker = L.marker(pos, {
                 icon: icon,
             }).bindPopup(popup, customOptions);
-        
+
             columns_layer_array.push(marker);
         });
-    
-        this.visibleStations = columns_layer_array.length;
+
+      async function callIndustriesApiDrawMap(){
+        await this.fetchCreative(); // Chiamata API per ottenere le informazioni sulle industrie creative
+
+        let markersArray = []; // Array per memorizzare i marcatori delle industrie creative
+
+        this.creativeIndustries.forEach(industry => {
+          const pos = [industry.latitude, industry.longitude]; // Posizione della singola industria
+          const icon = L.divIcon({
+            html: '<div class="industry-marker"></div>', // HTML per l'icona del marcatori
+            iconSize: L.point(100, 100) // Dimensioni dell'icona del marcatori
+          });
+
+          // Costruzione del contenuto del popup
+          const popupContent = `
+            <div class="industry-popup">
+                <h3>${industry.name}</h3>
+                <p>${industry.description}</p>
+            </div>
+        `;
+
+          const popup = L.popup().setContent(popupContent); // Creazione del popup
+
+          // Creazione del marcatori per l'industria creativa
+          const marker = L.marker(pos, {
+            icon: icon // Icona del marcatori
+          }).bindPopup(popup); // Collegamento del popup al marcatori
+
+          markersArray.push(marker); // Aggiunta del marcatori all'array
+        });
+
+        // Creazione di un layer group per i marcatori delle industrie creative
+        this.industriesLayerGroup = L.layerGroup(markersArray);
+
+        // Rimozione del layer group precedente (Weather Forecast) dalla mappa, se presente
+        if (this.weatherForecastLayerGroup) {
+          this.map.removeLayer(this.weatherForecastLayerGroup);
+        }
+
+        // Aggiunta del layer group delle industrie creative alla mappa
+        this.industriesLayerGroup.addTo(this.map);
+      }
+
+
+
+      this.visibleStations = columns_layer_array.length;
         let columns_layer = L.layerGroup(columns_layer_array, {});
-    
+
         /** Prepare the cluster group for station markers */
         this.layer_columns = new L.MarkerClusterGroup({
           showCoverageOnHover: false,
@@ -218,10 +286,10 @@ class OpendatahubWeatherForecast extends HTMLElement {
                 ${style__leaflet}
                 ${style__autocomplete}
                 ${style}
-            </style>     
-            <div id="webcomponents-map"> 
+            </style>
+            <div id="webcomponents-map">
                 <div class="autocomplete" style="width:300px;"><input id="searchInput" type="text" name="myMunicipality" placeholder="Municipality"></div>
-                <input id="searchHidden" type="hidden">     
+                <input id="searchHidden" type="hidden">
                 <div id="map" class="map"></div>
             </div>
         `;

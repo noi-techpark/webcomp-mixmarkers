@@ -6,22 +6,39 @@ SPDX-License-Identifier: CC0-1.0
 
 <!-- Example of how you implement a webcomponent in a website -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:z-index="http://www.w3.org/1999/xhtml">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../src/scss/style.css">
   <link rel="icon" href="data:,">
   <title>Opendatahub Webcams</title>
 </head>
 
 <body>
 
-  <h1>Web Component - Forecast</h1>
+  <!-- <h1>Web Component - Forecast</h1> -->
 
   <!-- Set the attribute "title" and refer to it as property in JS -->
-  <webcomp-weatherforecast centermap="46.641532,11.355583" zoommap="10" />
+  <webcomp-weatherforecast centermap="46.641532,11.355583" zoommap="10"></webcomp-weatherforecast>
   <script src="webcomp-weatherforecast.js"></script>
+
+
+  <!-- let firstButton = 0 -->
+  <div id="sidebar" class="sidebar" z-index: 1000;>
+    <!--
+        <button id="showWeatherForecast" action="forecast">Weather Forecast</button>
+        <button id="showCreativeIndustries" action="industries">Creative Industries</button>
+        <button onclick="alert('Terzo pulsante cliccato')">third 3</button>
+        <button id="showCreativeIndustries">Creative Industries</button> -->
+    <button onclick=callForecastApiDrawMap()>Weather Forecast</button>
+    <button onclick=callIndustriesApiDrawMap()>Creative Industries</button>
+
+  </div>
+
+  <button id="sidebar-toggle" class="sidebar-toggle" style="position: fixed; top: 20px; right: 20px; font-size: 24px; z-index: 1000;">&#9776;</button>
+  <script src="../src/sideBar.js"></script>
 
 </body>
 
