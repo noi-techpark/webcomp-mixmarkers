@@ -11,34 +11,60 @@ SPDX-License-Identifier: CC0-1.0
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="../src/scss/style.css">
   <link rel="icon" href="data:,">
   <title>Opendatahub Webcams</title>
+
+  <style>
+    /* Stili per i pulsanti */
+    #Button1, #button2, #button3 {
+      display: none;
+      position: fixed;
+      right: 20px;
+      z-index: 1001; /* Più alto del pulsante del menu */
+      font-size: 24px;
+    }
+    /* Specifica la posizione per ciascun pulsante */
+    #Button1 { top: 60px; }
+    #button2 { top: 100px; }
+    #button3 { top: 140px; }
+  </style>
+
 </head>
 
 <body>
-
-  <!-- <h1>Web Component - Forecast</h1> -->
 
   <!-- Set the attribute "title" and refer to it as property in JS -->
   <webcomp-weatherforecast centermap="46.641532,11.355583" zoommap="10"></webcomp-weatherforecast>
   <script src="webcomp-weatherforecast.js"></script>
 
-
-  <!-- let firstButton = 0 -->
-  <div id="sidebar" class="sidebar" z-index: 1000;>
-    <!--
-        <button id="showWeatherForecast" action="forecast">Weather Forecast</button>
-        <button id="showCreativeIndustries" action="industries">Creative Industries</button>
-        <button onclick="alert('Terzo pulsante cliccato')">third 3</button>
-        <button id="showCreativeIndustries">Creative Industries</button> -->
-    <button onclick=callForecastApiDrawMap()>Weather Forecast</button>
-    <button onclick=callIndustriesApiDrawMap()>Creative Industries</button>
-
+  <div id="sidebar" class="sidebar">
+    <button id="Button1" onclick="callForecastApiDrawMap()">Weather Forecast</button>
+    <button id="button2" onclick="callIndustriesApiDrawMap()">Creative Industries</button>
+    <button id="button3">Button 3</button>
   </div>
 
-  <button id="sidebar-toggle" class="sidebar-toggle" style="position: fixed; top: 20px; right: 20px; font-size: 24px; z-index: 1000;">&#9776;</button>
-  <script src="../src/sideBar.js"></script>
+  <!-- Bottone per mostrare/nascondere la barra laterale -->
+  <button onclick="toggleSidebar()" id="sidebar-toggle" class="sidebar-toggle"
+          style="position: fixed; top: 20px; right: 20px; font-size: 24px; z-index: 1000">&#9776;</button>
+
+  <script>
+    const button1 = document.getElementById("Button1");
+    const button2 = document.getElementById("button2");
+    const button3 = document.getElementById("button3");
+
+    function toggleSidebar() {
+      console.log("button clicked");
+      if (button1.style.display === "none") {
+        button1.style.display = "block";
+        button2.style.display = "block";
+        button3.style.display = "block";
+      } else {
+        button1.style.display = "none";
+        button2.style.display = "none";
+        button3.style.display = "none";
+      }
+    }
+  </script>
 
 </body>
 

@@ -2,6 +2,7 @@ import axios from "axios";
 import config from "./config";
 
 export function callGet(path, params) {
+
   return axios
     .get(config.industries.API_BASE_URL + path, {
       params: params
@@ -16,21 +17,16 @@ export function callGet(path, params) {
 }
 
 export async function fetchCreative(source) {
-  try {     //l'endpoint l'ho messo vuoto perché non credo serva
-    const response = await callGet("/", {
+
+    return callGet("/flat/CreativeIndustry?select=sname,scoordinate,smetadata.email,smetadata.address,smetadata.website", {
       pagesize: 0,
-      origin: config.ORIGIN});
-    const filteredData = response.data.filter(item => item.sactive);
-    return filteredData.map(item => ({
-      scoordinate: item.scoordinate,
-      smetadata: {
-        name: item.smetadata.name,
-        address: item.smetadata.address,
-        website: item.smetadata.website
-      }
-    }));
-  } catch(e) {
+      origin: config.ORIGIN
+    })
+    .then(response => {
+        this.creativeIndustries = response;
+      })
+      .catch(e => {
     console.log(e)
     throw e;
-  }
+  });
 }

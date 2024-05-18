@@ -10,7 +10,7 @@ export default {
     ORIGIN: 'webcomp-weatherforecast'
   },
   industries: {
-    API_BASE_URL: 'https://mobility.api.opendatahub.com/v2/flat/CreativeIndustry?origin=webcomp-creative-industries/',
+    API_BASE_URL: 'https://mobility.api.opendatahub.com/v2',
       ORIGIN: 'creative-industries'
   }
 };
