@@ -11,6 +11,7 @@ import style__autocomplete from './scss/autocomplete.css';
 import { fetchWeatherForecast, fetchMunicipality } from './api/api.js';
 import {fetchCreative} from './api/industries';
 import { autocomplete } from './custom/autocomplete.js'
+import config from "./api/config";
 
 //delete L.Icon.Default.prototype._getIconUrl;
 
@@ -94,6 +95,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
 
   // Triggers when the element is added to the document *and*
   // becomes part of the page itself (not just a child of a detached DOM)
+  creat;
   connectedCallback() {
     this.render();
 
@@ -116,23 +118,32 @@ class OpendatahubWeatherForecast extends HTMLElement {
   }
 
   async callIndustriesApiDrawMap() {
+    console.log('Industries method has been called');
     await this.fetchCreative('scoordinate,smetadata.email,sname,smetadata.address,smetadata.website'); // Chiamata API per ottenere le informazioni sulle industrie creative
 
-    let array = []; // Array per memorizzare i marcatori delle industrie creative
+    console.log('Path dell API = ' + fetchCreative());
 
-    this.creativeIndustries.map(creative => {
+    this.creat = [];
+    this.creat = fetchCreative();
+    let arrayMarker = []; // Array per memorizzare i marcatori delle industrie creative
+
+    this.creat.map(creative => {
+      console.log('Industries Map has been called');
 
       const pos = [
         creative["scoordinate"].Latitude,
         creative["scoordinate"].Longitude
       ];
 
+      console.log("longitudine: " + this.creativeIndustries.Item[0].scoordinate[0].Latitude);
+      console.log("longitudine: " + this.creativeIndustries.Item[0].scoordinate[0].Longitude);
+
       let icon = L.divIcon({
         html: '<div class="iconMarkerMap"></div>',
         iconSize: L.point(100, 100)
       });
 
-      const myIndustries = this.creativeIndustries;
+      const myIndustries = this.creat;
 
       let result = myIndustries.find(o => o['AddressInfo'] === creative['smetadata.email']);
 
@@ -141,7 +152,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
       // let industriesPic = '';
 
       industriesInformation.forEach(myCreative => {
-        industriesDatails += myCreative['Date'] + ": " + myCreative['WeatherDesc'] + ", ";
+        industriesDatails += myCreative['smetadata.sname'] + ": " + myCreative['smetadata.semail'] + ", ";
         console.log(myCreative['Date'] + ": " + myCreative['WeatherDesc'] + "............");
       });
 
@@ -149,7 +160,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
       const popupbody = '<div class="webcampopup"> + industriesDatails</div>';
       let popup = L.popup().setContent(popupbody);
 
-      var gifElement = document.createElement('img');
+      //var gifElement = document.createElement('img');
 
       // specify popup options
       var customOptions =
@@ -164,15 +175,14 @@ class OpendatahubWeatherForecast extends HTMLElement {
         icon: icon,
       }).bindPopup(popup, customOptions);
 
-
-      array.push(marker);
+      arrayMarker.push(marker);
     });
 
-    this.visibleStations = array.length;
-    let columns_layer = L.layerGroup(array, {});
+    this.visibleStations = arrayMarker.length;
+    let clayer = L.layerGroup(arrayMarker, {});
 
     /** Prepare the cluster group for station markers */
-    this.layer_columns = new L.MarkerClusterGroup({
+    this.lcolumns = new L.MarkerClusterGroup({
       showCoverageOnHover: false,
       chunkedLoading: true,
       iconCreateFunction: function (cluster) {
@@ -183,9 +193,9 @@ class OpendatahubWeatherForecast extends HTMLElement {
       }
     });
     /** Add maker layer in the cluster group */
-    this.layer_columns.addLayer(columns_layer);
+    this.layer_columns.addLayer(clayer);
     /** Add the cluster group to the map */
-    this.map.addLayer(this.layer_columns);
+    this.map.addLayer(this.lcolumns);
   }
 
   //ho lasciato le cose di webcam e di forecast
@@ -207,13 +217,14 @@ class OpendatahubWeatherForecast extends HTMLElement {
 
 
   async callForecastApiDrawMap() {
+    console.log('Forecast method has been called');
     await this.fetchWeatherForecast();
     await this.fetchMunicipality('Detail.it.Title,GpsPoints.position,IstatNumber');
 
     let columns_layer_array = [];
 
     this.municipalities.map(municipality => {
-
+      console.log('Municipality Map has been called');
       const pos = [
         municipality["GpsPoints.position"].Latitude,
         municipality["GpsPoints.position"].Longitude

@@ -6,18 +6,20 @@ import axios from "axios";
 import config from "./config";
 
 export function callGet(path, params) {
-	// console.log("call = " + config.API_BASE_URL + path);
-	// console.log("call params = ");
-	// console.log(params);
+  console.log("MUNICIPALITY call = " + config.API_BASE_URL + path);
+
+	console.log(params);
 	return axios
-		.get(config.turism.API_BASE_URL + path, {
+		.get(config.turismAPI.API_BASE_URL + path, {
 			params: params
 		})
 		.then(function(response) {
-			// console.log("call response = ");
-			// console.log(response.data);
-			//console.log(response.config);
+			console.log("call response = ");
+			//console.log(response.data);
+			console.log(response.config);
+      console.log("MUNICIPALITY call params = " + params);
 			return response.data;
+
 		})
 		.catch(function(error) {
 			console.log(error.response);
@@ -33,6 +35,7 @@ export async function fetchWebcams(source) {
 		})
 		.then(response => {
 			this.webcams = response.Items;
+      console.log('webcams = response' + this.webcams);
 		})
 		.catch(e => {
 			console.log(e)
@@ -47,6 +50,7 @@ export async function fetchWeatherForecast(source) {
 		})
 		.then(response => {
 			this.weather = response;
+      console.log('weather = response');
 		})
 		.catch(e => {
 			console.log(e)
@@ -61,6 +65,7 @@ export async function fetchDistricts(fields) {
     })
     .then(response => {
         this.districts = response;
+      console.log('district = response');
     })
     .catch(e => {
         console.log(e)
@@ -70,11 +75,12 @@ export async function fetchDistricts(fields) {
 
 export async function fetchMunicipality(fields) {
     return callGet("/Municipality", {
-        origin: config.ORIGIN,
+        origin: config.turismAPI.ORIGIN,
         fields: fields
     })
     .then(response => {
         this.municipalities = response;
+      console.log('municipalities = response');
     })
     .catch(e => {
         console.log(e)
