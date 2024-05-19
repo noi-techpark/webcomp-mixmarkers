@@ -31,7 +31,7 @@ https://tourism.api.opendatahub.com/swagger/index.html#/
 
 
 
-Gastronomies Api Call
+Gastronomies Api Call       //FATTO
 https://tourism.api.opendatahub.com/v1/ODHActivityPoi?tagfilter=gastronomy&active=true&fields=Detail.it.Title,GpsInfo
 
 tagfilter = filtro per categoria
@@ -41,12 +41,8 @@ fields = mostra solo i campi del json indicati
 Points of Intrests      //FATTO
 https://tourism.api.opendatahub.com/v1/ODHActivityPoi?tagfilter=poi&active=true&fields=Detail.it.Title,GpsInfo
 
-Activities
+Activities      //FATTO
 https://tourism.api.opendatahub.com/v1/ODHActivityPoi?tagfilter=activity&active=true&fields=Detail.it.Title,GpsInfo
 
 Creative Industries //FATTO
 https://mobility.api.opendatahub.com/v2/flat/CreativeIndustry?origin=webcomp-creative-industries/
-
-
-Flight Data
-https://mobility.api.opendatahub.com/v2/flat%2Cnode/Flight?limit=-1&offset=0&shownull=false&distinct=true&where=and%28or%28smetadata.fromdestination.eq.BZO%2Csmetadata.todestination.eq.BZO%29%2Csmetadata.departure_timestamp.gt.1715332085.994%2Csmetadata.departure_timestamp.lt.1746868085.994%29&origin=webcomp-flightdata

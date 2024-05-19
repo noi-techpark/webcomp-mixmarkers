@@ -8,7 +8,7 @@
 
   <style>
     /* Stili per i pulsanti */
-    #firstButton, #secondButton, #thirdButton {
+    #firstButton, #secondButton, #thirdButton, #fourthButton {
       display: none;
       position: fixed;
       right: 20px;
@@ -20,13 +20,16 @@
     #firstButton { top: 60px; }
     #secondButton { top: 100px; }
     #thirdButton { top: 140px; }
+    #fourthButton { top: 180px; }
   </style>
 </head>
+
 <body>
 <div id="sidebar" class="sidebar">
   <button id="firstButton">Weather Forecast</button>
   <button id="secondButton">Creative Industries</button>
   <button id="thirdButton">Interesting Points</button>
+  <button id="fourthButton">Gastronomy</button>
 </div>
 
 <webcomp-weatherforecast id="weather-forecast" centermap="46.641532,11.355583" zoommap="10"></webcomp-weatherforecast>
@@ -37,15 +40,18 @@
     const button1 = document.getElementById("firstButton");
     const button2 = document.getElementById("secondButton");
     const button3 = document.getElementById("thirdButton");
+    const button4 = document.getElementById("fourthButton");
 
     if (button1.style.display === "none") {
       button1.style.display = "block";
       button2.style.display = "block";
-      if (button3) button3.style.display = "block";
+      button3.style.display = "block";
+      button4.style.display = "block";
     } else {
       button1.style.display = "none";
       button2.style.display = "none";
-      if (button3) button3.style.display = "none";
+      button3.style.display = "none";
+      button4.style.display = "none";
     }
   }
 </script>

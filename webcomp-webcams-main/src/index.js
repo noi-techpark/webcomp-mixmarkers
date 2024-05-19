@@ -6,7 +6,7 @@ import style from './scss/main.scss';
 import style__autocomplete from './scss/autocomplete.css';
 import { fetchWeatherForecast, fetchMunicipality } from './api/api.js';
 import { fetchCreative } from './api/industries';
-import { fetchInterestingPoints, fetchActivities } from "./api/interestingPoints";
+import { fetchInterestingPoints, fetchActivities, fetchGastronomy } from "./api/interestingPoints";
 import { autocomplete } from './custom/autocomplete.js';
 import config from "./api/config";
 
@@ -34,6 +34,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
     this.fetchCreative = fetchCreative.bind(this);
     this.fetchInterestingPoints = fetchInterestingPoints.bind(this);
     this.fetchActivities = fetchActivities.bind(this);
+    this.fetchGastronomy = fetchGastronomy.bind(this);
 
     this.shadow = this.attachShadow({ mode: "open" });
 
@@ -41,6 +42,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
     this.callForecastApiDrawMap = this.callForecastApiDrawMap.bind(this);
     this.callIndustriesApiDrawMap = this.callIndustriesApiDrawMap.bind(this);
     this.callInterestingPointsApiDrawMap = this.callInterestingPointsApiDrawMap.bind(this);
+    this.callGastronomiesApiDrawMap = this.callGastronomiesApiDrawMap.bind(this);
   }
 
   static get observedAttributes() {
@@ -87,35 +89,28 @@ class OpendatahubWeatherForecast extends HTMLElement {
     const firstButton = document.getElementById("firstButton");
     const secondButton = document.getElementById("secondButton");
     const thirdButton = document.getElementById("thirdButton");
+    const fourthButton = document.getElementById("fourthButton");
 
     if (firstButton) {
-      console.log('First button found');
       firstButton.addEventListener("click", () => {
         console.log('First button clicked');
         this.callForecastApiDrawMap();
       });
-    } else {
-      console.log('First button not found');
-    }
-
-    if (secondButton) {
-      console.log('Second button found');
+    } if (secondButton) {
       secondButton.addEventListener("click", () => {
         console.log('Second button clicked');
         this.callIndustriesApiDrawMap();
       });
-    } else {
-      console.log('Second button not found');
-    }
-
-    if (thirdButton) {
-      console.log('Third button found');
+    } if (thirdButton) {
       thirdButton.addEventListener("click", () => {
         console.log('Third button clicked');
         this.callInterestingPointsApiDrawMap();
       });
-    } else {
-      console.log('Third button not found');
+    } if (fourthButton) {
+      fourthButton.addEventListener("click", () => {
+        console.log('Fourth Button clicked');
+        this.callGastronomiesApiDrawMap();
+      });
     }
   }
 
@@ -224,7 +219,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
 
           let icon = L.divIcon({
             html: '<div class="iconMarkerMap"></div>',
-            iconSize: L.point(25, 25), // Assicurati che le dimensioni siano visibili
+            iconSize: L.point(25, 25),
             className: 'iconMarkerMap'
           });
 
@@ -308,7 +303,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
 
       let arrayPoints = [];
 
-      const interestingPointsAndActivityData =[...interestingPointsData.Items, ...activityData.Items];
+      const interestingPointsAndActivityData = [...interestingPointsData.Items, ...activityData.Items];
 
       interestingPointsAndActivityData.forEach(point => {
         const pos = [
@@ -321,7 +316,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
           iconSize: L.point(100, 100)
         });
 
-        const popupbody = `<div class="webcampopuptext"><b>${point["Detail.it.Title"]}</b><br>Altitude: ${point.GpsInfo[0].Altitude}</div>`;
+        const popupbody = `<div class="webcampopuptext"><b>${point["Detail.it.Title"]}</b><br>Altitude: ${point.GpsInfo[0].Altitude} ${point.GpsInfo[0].AltitudeUnitofMeasure}</div>`;
         let popup = L.popup().setContent(popupbody);
 
         let marker = L.marker(pos, {
@@ -350,6 +345,77 @@ class OpendatahubWeatherForecast extends HTMLElement {
       console.error('Error fetching or processing interesting Points data:', error);
     }
   }
+
+  async callGastronomiesApiDrawMap(){
+    if (this.lcolumns) {
+      this.map.removeLayer(this.lcolumns);
+    }
+    if (this.layer_columns) {
+      this.map.removeLayer(this.layer_columns);
+    }
+    console.log('Gastronomy method has been called');
+
+    try {
+      const gastronomyData = await this.fetchGastronomy('Detail.it.Title,GpsInfo');
+      console.log('Gastronomy data fetched:', gastronomyData);
+
+      if (!gastronomyData || !gastronomyData.Items || gastronomyData.Items.length === 0) {
+        console.error('No gastronomy data found');
+        return;
+      }
+
+      let gastronomyArray = [];
+
+      gastronomyData.Items.forEach(refreshmentPoint => {
+        if (refreshmentPoint.GpsInfo && refreshmentPoint.GpsInfo.length > 0) {
+          const pos = [
+            refreshmentPoint.GpsInfo[0].Latitude,
+            refreshmentPoint.GpsInfo[0].Longitude
+          ];
+
+          let icon = L.divIcon({
+            html: '<div class="iconMarkerWebcam"></div>',
+            iconSize: L.point(100, 100)
+          });
+
+          let popupbody = `<div class="webcampopuptext"><b>${refreshmentPoint["Detail.it.Title"]}</b><br>`;
+
+          if (refreshmentPoint.GpsInfo[0].Altitude !== 0) { // if the Altitude is 0, it has not been shown in the popup
+            popupbody += `Altitude: ${refreshmentPoint.GpsInfo[0].Altitude} ${refreshmentPoint.GpsInfo[0].AltitudeUnitofMeasure}`;
+          }
+
+          popupbody += `</div>`;
+
+          let popup = L.popup().setContent(popupbody);
+
+          let marker = L.marker(pos, {
+            icon: icon,
+          }).bindPopup(popup);
+
+          gastronomyArray.push(marker);
+        } else {
+          console.error('No GpsInfo found for refreshment point:', refreshmentPoint);
+        }
+      });
+
+      this.lcolumns = new L.MarkerClusterGroup({
+        showCoverageOnHover: false,
+        chunkedLoading: true,
+        iconCreateFunction: function (cluster) {
+          return L.divIcon({
+            html: '<div class="marker_cluster__marker">' + cluster.getChildCount() + '</div>',
+            iconSize: L.point(100, 100)
+          });
+        }
+      });
+
+      this.lcolumns.addLayers(gastronomyArray);
+      this.map.addLayer(this.lcolumns);
+    } catch (e) {
+      console.error('Error fetching gastronomy data:', e);
+    }
+  }
+
 
   render() {
     this.shadow.innerHTML = `
