@@ -145,6 +145,9 @@ class OpendatahubWeatherForecast extends HTMLElement {
     if (this.lcolumns) {
       this.map.removeLayer(this.lcolumns);
     }
+    if (this.layer_columns) {
+      this.map.removeLayer(this.layer_columns);
+    }
     console.log('Forecast method has been called');
     await this.fetchWeatherForecast();
     await this.fetchMunicipality('Detail.it.Title,GpsPoints.position,IstatNumber');
@@ -183,26 +186,13 @@ class OpendatahubWeatherForecast extends HTMLElement {
 
       columns_layer_array.push(marker);
     });
-
-    this.visibleStations = columns_layer_array.length;
-    let columns_layer = L.layerGroup(columns_layer_array);
-
-    this.layer_columns = new L.MarkerClusterGroup({
-      showCoverageOnHover: false,
-      chunkedLoading: true,
-      iconCreateFunction: function (cluster) {
-        return L.divIcon({
-          html: '<div class="marker_cluster__marker">' + cluster.getChildCount() + '</div>',
-          iconSize: L.point(100, 100)
-        });
-      }
-    });
-
-    this.layer_columns.addLayer(columns_layer);
-    this.map.addLayer(this.layer_columns);
+    this.generateALayerForTheMarkers(columns_layer_array);
   }
 
   async callIndustriesApiDrawMap() {
+    if (this.lcolumns) {
+      this.map.removeLayer(this.lcolumns);
+    }
     if (this.layer_columns) {
       this.map.removeLayer(this.layer_columns);
     }
@@ -251,26 +241,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
       console.log('Total markers created:', arrayMarker.length);
 
       if (arrayMarker.length > 0) {
-        let clayer = L.layerGroup(arrayMarker);
-
-        if (!this.lcolumns) {
-          this.lcolumns = new L.MarkerClusterGroup({
-            showCoverageOnHover: false,
-            chunkedLoading: true,
-            iconCreateFunction: function (cluster) {
-              return L.divIcon({
-                html: '<div class="marker_cluster__marker">' + cluster.getChildCount() + '</div>',
-                iconSize: L.point(40, 40)
-              });
-            }
-          });
-        } else {
-          this.lcolumns.clearLayers(); // it deletes the markers
-        }
-
-        this.lcolumns.addLayer(clayer);
-        this.map.addLayer(this.lcolumns);
-
+        this.generateALayerForTheMarkers(arrayMarker);
         console.log('Markers added to the map');
       } else {
         console.error('No valid markers to add to the map');
@@ -337,19 +308,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
         arrayPoints.push(marker);
       });
 
-      this.lcolumns = new L.MarkerClusterGroup({
-        showCoverageOnHover: false,
-        chunkedLoading: true,
-        iconCreateFunction: function (cluster) {
-          return L.divIcon({
-            html: '<div class="marker_cluster__marker">' + cluster.getChildCount() + '</div>',
-            iconSize: L.point(100, 100)
-          });
-        }
-      });
-
-      this.lcolumns.addLayers(arrayPoints);
-      this.map.addLayer(this.lcolumns);
+      this.generateALayerForTheMarkers(arrayPoints);
 
       console.log('Markers added to the map');
     } catch (error) {
@@ -409,26 +368,16 @@ class OpendatahubWeatherForecast extends HTMLElement {
         }
       });
 
-      this.lcolumns = new L.MarkerClusterGroup({
-        showCoverageOnHover: false,
-        chunkedLoading: true,
-        iconCreateFunction: function (cluster) {
-          return L.divIcon({
-            html: '<div class="marker_cluster__marker">' + cluster.getChildCount() + '</div>',
-            iconSize: L.point(100, 100)
-          });
-        }
-      });
-
-      this.lcolumns.addLayers(gastronomyArray);
-      this.map.addLayer(this.lcolumns);
+      this.generateALayerForTheMarkers(gastronomyArray);
     } catch (e) {
       console.error('Error fetching gastronomy data:', e);
     }
   }
 
-
   async callParkingApiDrawMap() {
+    if (this.lcolumns) {
+      this.map.removeLayer(this.lcolumns);
+    }
     if (this.layer_columns) {
       this.map.removeLayer(this.layer_columns);
     }
@@ -477,30 +426,8 @@ class OpendatahubWeatherForecast extends HTMLElement {
         }
       });
 
-      console.log('Total markers created:', parkingArray.length);
-
       if (parkingArray.length > 0) {
-        let clayer = L.layerGroup(parkingArray);
-
-        if (!this.lcolumns) {
-          this.lcolumns = new L.MarkerClusterGroup({
-            showCoverageOnHover: false,
-            chunkedLoading: true,
-            iconCreateFunction: function (cluster) {
-              return L.divIcon({
-                html: '<div class="marker_cluster__marker">' + cluster.getChildCount() + '</div>',
-                iconSize: L.point(40, 40)
-              });
-            }
-          });
-        } else {
-          this.lcolumns.clearLayers(); // it deletes the markers
-        }
-
-        this.lcolumns.addLayer(clayer);
-        this.map.addLayer(this.lcolumns);
-
-        console.log('Markers added to the map');
+        this.generateALayerForTheMarkers(parkingArray);
       } else {
         console.error('No valid markers to add to the map');
       }
@@ -508,7 +435,6 @@ class OpendatahubWeatherForecast extends HTMLElement {
       console.error('Error fetching or processing parking data:', error);
     }
   }
-
 
   render() {
     this.shadow.innerHTML = `
@@ -525,6 +451,23 @@ class OpendatahubWeatherForecast extends HTMLElement {
       </div>
     `;
   }
+
+  generateALayerForTheMarkers(arrayPoints) {
+    this.lcolumns = new L.MarkerClusterGroup({
+      showCoverageOnHover: false,
+      chunkedLoading: true,
+      iconCreateFunction: function (cluster) {
+        return L.divIcon({
+          html: '<div class="marker_cluster__marker">' + cluster.getChildCount() + '</div>',
+          iconSize: L.point(100, 100)
+        });
+      }
+    });
+
+    this.lcolumns.addLayers(arrayPoints);
+    this.map.addLayer(this.lcolumns);
+  }
+
 }
 
 customElements.define('webcomp-weatherforecast', OpendatahubWeatherForecast);
