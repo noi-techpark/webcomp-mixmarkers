@@ -11,5 +11,9 @@ export default {
   industriesAPI: {
     API_BASE_URL: 'https://mobility.api.opendatahub.com/v2',
     ORIGIN: 'webcomp-weatherforecast'
+  },
+  interestPointsAPI: {
+    API_BASE_URL: 'https://tourism.api.opendatahub.com/v1',
+    ORIGIN: 'webcomp-weatherforecast'
   }
 };

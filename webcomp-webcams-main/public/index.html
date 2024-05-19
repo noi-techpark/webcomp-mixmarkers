@@ -8,7 +8,7 @@
 
   <style>
     /* Stili per i pulsanti */
-    #firstButton, #secondButton, #button3 {
+    #firstButton, #secondButton, #thirdButton {
       display: none;
       position: fixed;
       right: 20px;
@@ -19,14 +19,14 @@
     /* Specifica la posizione per ciascun pulsante */
     #firstButton { top: 60px; }
     #secondButton { top: 100px; }
-    #button3 { top: 140px; }
+    #thirdButton { top: 140px; }
   </style>
 </head>
 <body>
 <div id="sidebar" class="sidebar">
   <button id="firstButton">Weather Forecast</button>
   <button id="secondButton">Creative Industries</button>
-  <!-- <button id="button3">Button 3</button> -->
+  <button id="thirdButton">Interesting Points</button>
 </div>
 
 <webcomp-weatherforecast id="weather-forecast" centermap="46.641532,11.355583" zoommap="10"></webcomp-weatherforecast>
@@ -36,7 +36,7 @@
   function toggleSidebar() {
     const button1 = document.getElementById("firstButton");
     const button2 = document.getElementById("secondButton");
-    const button3 = document.getElementById("button3");
+    const button3 = document.getElementById("thirdButton");
 
     if (button1.style.display === "none") {
       button1.style.display = "block";

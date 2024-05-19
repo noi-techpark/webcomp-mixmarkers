@@ -6,6 +6,7 @@ import style from './scss/main.scss';
 import style__autocomplete from './scss/autocomplete.css';
 import { fetchWeatherForecast, fetchMunicipality } from './api/api.js';
 import { fetchCreative } from './api/industries';
+import { fetchInterestingPoints, fetchActivities } from "./api/interestingPoints";
 import { autocomplete } from './custom/autocomplete.js';
 import config from "./api/config";
 
@@ -31,12 +32,15 @@ class OpendatahubWeatherForecast extends HTMLElement {
     this.fetchMunicipality = fetchMunicipality.bind(this);
     this.autocomplete = autocomplete.bind(this);
     this.fetchCreative = fetchCreative.bind(this);
+    this.fetchInterestingPoints = fetchInterestingPoints.bind(this);
+    this.fetchActivities = fetchActivities.bind(this);
 
     this.shadow = this.attachShadow({ mode: "open" });
 
     // Bind functions to the current instance
     this.callForecastApiDrawMap = this.callForecastApiDrawMap.bind(this);
     this.callIndustriesApiDrawMap = this.callIndustriesApiDrawMap.bind(this);
+    this.callInterestingPointsApiDrawMap = this.callInterestingPointsApiDrawMap.bind(this);
   }
 
   static get observedAttributes() {
@@ -82,6 +86,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
   setupButtonHandlers() {
     const firstButton = document.getElementById("firstButton");
     const secondButton = document.getElementById("secondButton");
+    const thirdButton = document.getElementById("thirdButton");
 
     if (firstButton) {
       console.log('First button found');
@@ -101,6 +106,16 @@ class OpendatahubWeatherForecast extends HTMLElement {
       });
     } else {
       console.log('Second button not found');
+    }
+
+    if (thirdButton) {
+      console.log('Third button found');
+      thirdButton.addEventListener("click", () => {
+        console.log('Third button clicked');
+        this.callInterestingPointsApiDrawMap();
+      });
+    } else {
+      console.log('Third button not found');
     }
   }
 
@@ -244,7 +259,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
             }
           });
         } else {
-          this.lcolumns.clearLayers(); // Clear existing markers if any
+          this.lcolumns.clearLayers(); // it deletes the markers
         }
 
         this.lcolumns.addLayer(clayer);
@@ -259,6 +274,82 @@ class OpendatahubWeatherForecast extends HTMLElement {
     }
   }
 
+  async callInterestingPointsApiDrawMap() {
+    if (this.lcolumns) {
+      this.map.removeLayer(this.lcolumns);
+    }
+    if (this.layer_columns) {
+      this.map.removeLayer(this.layer_columns);
+    }
+    console.log('Points method has been called');
+
+    try {
+      //I combined fetchInterestingPoints and fetchActivities, so it executes both call simultaneously
+      const [interestingPointsData, activityData] = await Promise.all([
+        this.fetchInterestingPoints('Detail.it.Title,GpsInfo'),
+        this.fetchActivities('Detail.it.Title,GpsInfo')
+      ]);
+      console.log('Points data fetched:', interestingPointsData);
+      console.log('Activity data fetched:', activityData);
+
+      if (!interestingPointsData || !interestingPointsData.Items || interestingPointsData.Items.length === 0) {
+        console.error('No interesting Points data found');
+      }
+
+      if (!activityData || !activityData.Items || activityData.Items.length === 0) {
+        console.error('No activity data found');
+      }
+
+      if ((!interestingPointsData || !interestingPointsData.Items || interestingPointsData.Items.length === 0) &&
+        (!activityData || !activityData.Items || activityData.Items.length === 0)) {
+        console.error('No interesting Points or activity data found');
+        return;
+      }
+
+      let arrayPoints = [];
+
+      const interestingPointsAndActivityData =[...interestingPointsData.Items, ...activityData.Items];
+
+      interestingPointsAndActivityData.forEach(point => {
+        const pos = [
+          point.GpsInfo[0].Latitude,
+          point.GpsInfo[0].Longitude
+        ];
+
+        let icon = L.divIcon({
+          html: '<div class="iconMarkerWebcam"></div>',
+          iconSize: L.point(100, 100)
+        });
+
+        const popupbody = `<div class="webcampopuptext"><b>${point["Detail.it.Title"]}</b><br>Altitude: ${point.GpsInfo[0].Altitude}</div>`;
+        let popup = L.popup().setContent(popupbody);
+
+        let marker = L.marker(pos, {
+          icon: icon,
+        }).bindPopup(popup);
+
+        arrayPoints.push(marker);
+      });
+
+      this.lcolumns = new L.MarkerClusterGroup({
+        showCoverageOnHover: false,
+        chunkedLoading: true,
+        iconCreateFunction: function (cluster) {
+          return L.divIcon({
+            html: '<div class="marker_cluster__marker">' + cluster.getChildCount() + '</div>',
+            iconSize: L.point(100, 100)
+          });
+        }
+      });
+
+      this.lcolumns.addLayers(arrayPoints);
+      this.map.addLayer(this.lcolumns);
+
+      console.log('Markers added to the map');
+    } catch (error) {
+      console.error('Error fetching or processing interesting Points data:', error);
+    }
+  }
 
   render() {
     this.shadow.innerHTML = `

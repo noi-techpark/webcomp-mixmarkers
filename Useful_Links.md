@@ -38,13 +38,13 @@ tagfilter = filtro per categoria
 active= true  prendi solo dati attivi
 fields = mostra solo i campi del json indicati
 
-Points of Intrests
+Points of Intrests      //FATTO
 https://tourism.api.opendatahub.com/v1/ODHActivityPoi?tagfilter=poi&active=true&fields=Detail.it.Title,GpsInfo
 
 Activities
 https://tourism.api.opendatahub.com/v1/ODHActivityPoi?tagfilter=activity&active=true&fields=Detail.it.Title,GpsInfo
 
-Creative Industries ////
+Creative Industries //FATTO
 https://mobility.api.opendatahub.com/v2/flat/CreativeIndustry?origin=webcomp-creative-industries/
 
 
