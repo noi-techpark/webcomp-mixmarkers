@@ -121,6 +121,9 @@ class OpendatahubWeatherForecast extends HTMLElement {
 
 
   async callForecastApiDrawMap() {
+    if (this.lcolumns) {
+      this.map.removeLayer(this.lcolumns);
+    }
     console.log('Forecast method has been called');
     await this.fetchWeatherForecast();
     await this.fetchMunicipality('Detail.it.Title,GpsPoints.position,IstatNumber');
@@ -179,6 +182,9 @@ class OpendatahubWeatherForecast extends HTMLElement {
   }
 
   async callIndustriesApiDrawMap() {
+    if (this.layer_columns) {
+      this.map.removeLayer(this.layer_columns);
+    }
     console.log('Industries method has been called');
 
     try {
