@@ -1,3 +1,8 @@
+<!-- SPDX-FileCopyrightText: NOI Techpark <digital@noi.bz.it>
+
+ SPDX-License-Identifier: AGPL-3.0-or-later -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +13,7 @@
 
   <style>
     /* Stili per i pulsanti */
-    #firstButton, #secondButton, #thirdButton, #fourthButton {
+    #firstButton, #secondButton, #thirdButton, #fourthButton, #fifthButton {
       display: none;
       position: fixed;
       right: 20px;
@@ -21,6 +26,7 @@
     #secondButton { top: 100px; }
     #thirdButton { top: 140px; }
     #fourthButton { top: 180px; }
+    #fifthButton { top: 220px; }
   </style>
 </head>
 
@@ -30,6 +36,7 @@
   <button id="secondButton">Creative Industries</button>
   <button id="thirdButton">Interesting Points</button>
   <button id="fourthButton">Gastronomy</button>
+  <button id="fifthButton">Parking Spots</button>
 </div>
 
 <webcomp-weatherforecast id="weather-forecast" centermap="46.641532,11.355583" zoommap="10"></webcomp-weatherforecast>
@@ -41,17 +48,20 @@
     const button2 = document.getElementById("secondButton");
     const button3 = document.getElementById("thirdButton");
     const button4 = document.getElementById("fourthButton");
+    const button5 = document.getElementById("fifthButton");
 
     if (button1.style.display === "none") {
       button1.style.display = "block";
       button2.style.display = "block";
       button3.style.display = "block";
       button4.style.display = "block";
+      button5.style.display = "block";
     } else {
       button1.style.display = "none";
       button2.style.display = "none";
       button3.style.display = "none";
       button4.style.display = "none";
+      button5.style.display = "none";
     }
   }
 </script>

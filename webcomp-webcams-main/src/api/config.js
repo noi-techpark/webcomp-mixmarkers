@@ -8,7 +8,7 @@ export default {
     //API_BASE_URL: 'https://api.tourism.testingmachine.eu/v1',
     ORIGIN: 'webcomp-weatherforecast'
   },
-  industriesAPI: {
+  mobilityAPI: {    //Creative Industries, Parking Spot
     API_BASE_URL: 'https://mobility.api.opendatahub.com/v2',
     ORIGIN: 'webcomp-weatherforecast'
   }

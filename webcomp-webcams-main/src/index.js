@@ -1,12 +1,15 @@
+// SPDX-FileCopyrightText: NOI Techpark <digital@noi.bz.it>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 import L from 'leaflet';
 import leaflet_mrkcls from 'leaflet.markercluster';
 import style__leaflet from 'leaflet/dist/leaflet.css';
 import style__markercluster from 'leaflet.markercluster/dist/MarkerCluster.css';
 import style from './scss/main.scss';
 import style__autocomplete from './scss/autocomplete.css';
-import { fetchWeatherForecast, fetchMunicipality } from './api/api.js';
-import { fetchCreative } from './api/industries';
-import { fetchInterestingPoints, fetchActivities, fetchGastronomy } from "./api/interestingPoints";
+import { fetchWeatherForecast, fetchMunicipality, fetchInterestingPoints, fetchActivities, fetchGastronomy } from './api/ApiTurism.js';
+import { fetchCreative, fetchParking } from './api/ApiMobility';
 import { autocomplete } from './custom/autocomplete.js';
 import config from "./api/config";
 
@@ -35,6 +38,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
     this.fetchInterestingPoints = fetchInterestingPoints.bind(this);
     this.fetchActivities = fetchActivities.bind(this);
     this.fetchGastronomy = fetchGastronomy.bind(this);
+    this.fetchParking = fetchParking.bind(this);
 
     this.shadow = this.attachShadow({ mode: "open" });
 
@@ -43,6 +47,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
     this.callIndustriesApiDrawMap = this.callIndustriesApiDrawMap.bind(this);
     this.callInterestingPointsApiDrawMap = this.callInterestingPointsApiDrawMap.bind(this);
     this.callGastronomiesApiDrawMap = this.callGastronomiesApiDrawMap.bind(this);
+    this.callParkingApiDrawMap = this.callParkingApiDrawMap.bind(this);
   }
 
   static get observedAttributes() {
@@ -90,6 +95,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
     const secondButton = document.getElementById("secondButton");
     const thirdButton = document.getElementById("thirdButton");
     const fourthButton = document.getElementById("fourthButton");
+    const fifthButton = document.getElementById("fifthButton");
 
     if (firstButton) {
       firstButton.addEventListener("click", () => {
@@ -110,6 +116,11 @@ class OpendatahubWeatherForecast extends HTMLElement {
       fourthButton.addEventListener("click", () => {
         console.log('Fourth Button clicked');
         this.callGastronomiesApiDrawMap();
+      });
+    } if (fifthButton) {
+      fifthButton.addEventListener("click", () => {
+        console.log('Fifth Button clicked');
+        this.callParkingApiDrawMap();
       });
     }
   }
@@ -413,6 +424,88 @@ class OpendatahubWeatherForecast extends HTMLElement {
       this.map.addLayer(this.lcolumns);
     } catch (e) {
       console.error('Error fetching gastronomy data:', e);
+    }
+  }
+
+
+  async callParkingApiDrawMap() {
+    if (this.layer_columns) {
+      this.map.removeLayer(this.layer_columns);
+    }
+    console.log('Parking method has been called');
+
+    try {
+
+      const parkingData = await this.fetchParking('scoordinate, mvalue, smetadata');
+      console.log('Parking data fetched:', parkingData);
+
+      if (!parkingData || !parkingData.data) {
+        console.error('No industries data found');
+        return;
+      }
+
+      let parkingArray = [];
+
+      parkingData.data.forEach(parked => {
+        console.log('Processing creative:', parked);
+
+        if (parked["scoordinate"] && !isNaN(parked["scoordinate"].x) && !isNaN(parked["scoordinate"].y)) {
+          const pos = [
+            parseFloat(parked["scoordinate"].y),
+            parseFloat(parked["scoordinate"].x)
+          ];
+
+          let icon = L.divIcon({
+            html: '<div class="iconMarkerMap"></div>',
+            iconSize: L.point(25, 25),
+            className: 'iconMarkerMap'
+          });
+
+          const popupbody = `<div class="webcampopuptext"><b>${parked["smetadata"].standard_name}<br></b>
+                                    Free Spots: <b>${parked["mvalue"]}</b> / ${parked["smetadata"].capacity}<br><br>
+                                    ${parked["smetadata"].mainaddress}, ${parked["smetadata"].municipality}</div>`;
+          let popup = L.popup().setContent(popupbody);
+
+          let marker = L.marker(pos, {
+            icon: icon,
+          }).bindPopup(popup);
+
+          parkingArray.push(marker);
+          console.log('Marker created at position:', pos);
+        } else {
+          console.error('Invalid coordinates for creative:', parked);
+        }
+      });
+
+      console.log('Total markers created:', parkingArray.length);
+
+      if (parkingArray.length > 0) {
+        let clayer = L.layerGroup(parkingArray);
+
+        if (!this.lcolumns) {
+          this.lcolumns = new L.MarkerClusterGroup({
+            showCoverageOnHover: false,
+            chunkedLoading: true,
+            iconCreateFunction: function (cluster) {
+              return L.divIcon({
+                html: '<div class="marker_cluster__marker">' + cluster.getChildCount() + '</div>',
+                iconSize: L.point(40, 40)
+              });
+            }
+          });
+        } else {
+          this.lcolumns.clearLayers(); // it deletes the markers
+        }
+
+        this.lcolumns.addLayer(clayer);
+        this.map.addLayer(this.lcolumns);
+
+        console.log('Markers added to the map');
+      } else {
+        console.error('No valid markers to add to the map');
+      }
+    } catch (error) {
+      console.error('Error fetching or processing parking data:', error);
     }
   }
 

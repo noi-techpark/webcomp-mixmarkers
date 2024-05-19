@@ -10,7 +10,7 @@ https://databrowser.opendatahub.com/dataset-overview/178ea911-cc54-418e-b42e-52c
 
 https://mobility.api.opendatahub.com/v2/flat/ParkingStation/free/latest
 
-https://mobility.api.opendatahub.com/v2/flat/ParkingStation/free/latest?select=sname,mvalue,smetadata.capacity
+https://mobility.api.opendatahub.com/v2/flat/ParkingStation/free/latest?select=mvalue,scoordinate,smetadata.capacity,smetadata.mainaddress,smetadata.standard_name,smetadata.municipality
 
 https://databrowser.opendatahub.com/dataset-overview/0e90b559-ef57-4aef-8c0a-a33fc4af4508
 
@@ -46,3 +46,6 @@ https://tourism.api.opendatahub.com/v1/ODHActivityPoi?tagfilter=activity&active=
 
 Creative Industries //FATTO
 https://mobility.api.opendatahub.com/v2/flat/CreativeIndustry?origin=webcomp-creative-industries/
+
+Parking Spot
+https://mobility.api.opendatahub.com/v2/flat/ParkingStation/free/latest?select=mvalue,scoordinate,smetadata.capacity,smetadata.mainaddress,smetadata.standard_name,smetadata.municipality
