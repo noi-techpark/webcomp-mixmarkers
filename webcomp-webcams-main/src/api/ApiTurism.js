@@ -6,18 +6,13 @@ import axios from "axios";
 import config from "./config";
 
 export function callGet(path, params) {
-  console.log("TURISM API call = " + config.turismAPI.API_BASE_URL + path);
+  console.log("Turism path = " + config.turismAPI.API_BASE_URL + path);
 
-  console.log(params);
   return axios
     .get(config.turismAPI.API_BASE_URL + path, {
       params: params
     })
     .then(function(response) {
-      console.log("location response = ");
-      console.log("API response = ", response.data);
-      console.log(response.config);
-      console.log("POINTS call params = " + params);
       return response.data;
 
     })
@@ -95,7 +90,7 @@ export async function fetchInterestingPoints(fields) {
       origin: config.turismAPI.ORIGIN,
       fields: fields
     });
-    console.log('interesting response = ', response);
+    console.log('interesting = response');
     return response;
   } catch (error) {
     console.error(error);
@@ -109,7 +104,7 @@ export async function fetchActivities(fields) {
       origin: config.turismAPI.ORIGIN,
       fields: fields
     });
-    console.log('activities response = ', response);
+    console.log('activities = response = ');
     return response;
   } catch (error) {
     console.error(error);
@@ -124,7 +119,7 @@ export async function fetchGastronomy(fields) {
       origin: config.turismAPI.ORIGIN,
       fields: fields
     });
-    console.log('gastronomy response = ', response);
+    console.log('gastronomy = response = ');
     return response;
   } catch (error) {
     console.error(error);

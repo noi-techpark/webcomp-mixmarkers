@@ -47,5 +47,5 @@ https://tourism.api.opendatahub.com/v1/ODHActivityPoi?tagfilter=activity&active=
 Creative Industries //FATTO
 https://mobility.api.opendatahub.com/v2/flat/CreativeIndustry?origin=webcomp-creative-industries/
 
-Parking Spot
+Parking Spot        //FATTO
 https://mobility.api.opendatahub.com/v2/flat/ParkingStation/free/latest?select=mvalue,scoordinate,smetadata.capacity,smetadata.mainaddress,smetadata.standard_name,smetadata.municipality

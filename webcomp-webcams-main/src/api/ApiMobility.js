@@ -2,13 +2,12 @@ import axios from "axios";
 import config from "./config";
 
 async function callGet(path, params) {
-  console.log("INDUSTRY call = " + config.mobilityAPI.API_BASE_URL + path);
-  console.log(params);
+  console.log("Mobility path = " + config.mobilityAPI.API_BASE_URL + path);
   try {
     const response = await axios.get(config.mobilityAPI.API_BASE_URL + path, {
       params: params
     });
-    console.log('industry response = ', response);
+    console.log('industry = response');
     return response.data;
   } catch (error) {
     console.error(error.response);
@@ -22,10 +21,10 @@ export async function fetchCreative(source) {
       pagesize: 0,
       origin: config.mobilityAPI.ORIGIN,
     });
-    console.log('fetchCreative response = ', response);
+    console.log('creativeIndustry = response');
     return response;
-  } catch (error) {
-    console.error(error);
+  } catch (e) {
+    console.error(e);
     throw error;
   }
 }
@@ -36,7 +35,7 @@ export async function fetchParking(source) {
     origin: config.mobilityAPI.ORIGIN,
     pagesize: 0
   });
-  console.log('Parking = response', response);
+  console.log('parking = response');
   return response;
   } catch(e) {
       console.error(e);

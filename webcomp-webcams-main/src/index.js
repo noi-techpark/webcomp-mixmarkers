@@ -42,7 +42,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
 
     this.shadow = this.attachShadow({ mode: "open" });
 
-    // Bind functions to the current instance
+    // the Bind functions avoid the possible lost of data
     this.callForecastApiDrawMap = this.callForecastApiDrawMap.bind(this);
     this.callIndustriesApiDrawMap = this.callIndustriesApiDrawMap.bind(this);
     this.callInterestingPointsApiDrawMap = this.callInterestingPointsApiDrawMap.bind(this);
@@ -87,7 +87,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
   connectedCallback() {
     this.render();
     this.initializeMap();
-    this.setupButtonHandlers(); // Setup button handlers when component is added to the DOM
+    this.setupButtonHandlers();
   }
 
   setupButtonHandlers() {
@@ -136,19 +136,12 @@ class OpendatahubWeatherForecast extends HTMLElement {
     L.tileLayer(this.map_layer, {
       attribution: this.map_attribution
     }).addTo(this.map);
-
-    console.log('Map initialized with center:', this.map_center, 'and zoom:', this.map_zoom);
   }
 
 
   async callForecastApiDrawMap() {
-    if (this.lcolumns) {
-      this.map.removeLayer(this.lcolumns);
-    }
-    if (this.layer_columns) {
-      this.map.removeLayer(this.layer_columns);
-    }
     console.log('Forecast method has been called');
+    this.removeMarkerFromMap();
     await this.fetchWeatherForecast();
     await this.fetchMunicipality('Detail.it.Title,GpsPoints.position,IstatNumber');
 
@@ -190,17 +183,11 @@ class OpendatahubWeatherForecast extends HTMLElement {
   }
 
   async callIndustriesApiDrawMap() {
-    if (this.lcolumns) {
-      this.map.removeLayer(this.lcolumns);
-    }
-    if (this.layer_columns) {
-      this.map.removeLayer(this.layer_columns);
-    }
+    this.removeMarkerFromMap();
     console.log('Industries method has been called');
 
     try {
       const industriesData = await this.fetchCreative('scoordinate,smetadata.email,sname,smetadata.address,smetadata.website');
-      console.log('Industries data fetched:', industriesData);
 
       if (!industriesData || !industriesData.data) {
         console.error('No industries data found');
@@ -210,7 +197,6 @@ class OpendatahubWeatherForecast extends HTMLElement {
       let arrayMarker = [];
 
       industriesData.data.forEach(creative => {
-        console.log('Processing creative:', creative);
 
         if (creative["scoordinate"] && !isNaN(creative["scoordinate"].x) && !isNaN(creative["scoordinate"].y)) {
           const pos = [
@@ -232,54 +218,45 @@ class OpendatahubWeatherForecast extends HTMLElement {
           }).bindPopup(popup);
 
           arrayMarker.push(marker);
-          console.log('Marker created at position:', pos);
         } else {
           console.error('Invalid coordinates for creative:', creative);
         }
       });
 
-      console.log('Total markers created:', arrayMarker.length);
+      console.log('Num of created markers: ', arrayMarker.length);
 
       if (arrayMarker.length > 0) {
         this.generateALayerForTheMarkers(arrayMarker);
-        console.log('Markers added to the map');
       } else {
         console.error('No valid markers to add to the map');
       }
     } catch (error) {
-      console.error('Error fetching or processing industries data:', error);
+      console.error('Error in processing Industries data:', error);
     }
   }
 
   async callInterestingPointsApiDrawMap() {
-    if (this.lcolumns) {
-      this.map.removeLayer(this.lcolumns);
-    }
-    if (this.layer_columns) {
-      this.map.removeLayer(this.layer_columns);
-    }
-    console.log('Points method has been called');
+    this.removeMarkerFromMap();
+    console.log('InterestPoints&Activity method has been called');
 
     try {
-      //I combined fetchInterestingPoints and fetchActivities, so it executes both call simultaneously
+      //combined fetchInterestingPoints and fetchActivities, so it executes both call simultaneously
       const [interestingPointsData, activityData] = await Promise.all([
         this.fetchInterestingPoints('Detail.it.Title,GpsInfo'),
         this.fetchActivities('Detail.it.Title,GpsInfo')
       ]);
-      console.log('Points data fetched:', interestingPointsData);
-      console.log('Activity data fetched:', activityData);
 
       if (!interestingPointsData || !interestingPointsData.Items || interestingPointsData.Items.length === 0) {
-        console.error('No interesting Points data found');
+        console.error('No interesting Points found');
       }
 
       if (!activityData || !activityData.Items || activityData.Items.length === 0) {
-        console.error('No activity data found');
+        console.error('No activity found');
       }
 
       if ((!interestingPointsData || !interestingPointsData.Items || interestingPointsData.Items.length === 0) &&
         (!activityData || !activityData.Items || activityData.Items.length === 0)) {
-        console.error('No interesting Points or activity data found');
+        console.error('No Interesting Points or Activities found');
         return;
       }
 
@@ -309,25 +286,17 @@ class OpendatahubWeatherForecast extends HTMLElement {
       });
 
       this.generateALayerForTheMarkers(arrayPoints);
-
-      console.log('Markers added to the map');
     } catch (error) {
-      console.error('Error fetching or processing interesting Points data:', error);
+      console.error('Error in processing Interesting Points & Activity data:', error);
     }
   }
 
   async callGastronomiesApiDrawMap(){
-    if (this.lcolumns) {
-      this.map.removeLayer(this.lcolumns);
-    }
-    if (this.layer_columns) {
-      this.map.removeLayer(this.layer_columns);
-    }
+    this.removeMarkerFromMap();
     console.log('Gastronomy method has been called');
 
     try {
       const gastronomyData = await this.fetchGastronomy('Detail.it.Title,GpsInfo');
-      console.log('Gastronomy data fetched:', gastronomyData);
 
       if (!gastronomyData || !gastronomyData.Items || gastronomyData.Items.length === 0) {
         console.error('No gastronomy data found');
@@ -364,39 +333,32 @@ class OpendatahubWeatherForecast extends HTMLElement {
 
           gastronomyArray.push(marker);
         } else {
-          console.error('No GpsInfo found for refreshment point:', refreshmentPoint);
+          console.error('No Refreshment points found');
         }
       });
 
       this.generateALayerForTheMarkers(gastronomyArray);
     } catch (e) {
-      console.error('Error fetching gastronomy data:', e);
+      console.error('Error in porcessing gastronomy data:', e);
     }
   }
 
   async callParkingApiDrawMap() {
-    if (this.lcolumns) {
-      this.map.removeLayer(this.lcolumns);
-    }
-    if (this.layer_columns) {
-      this.map.removeLayer(this.layer_columns);
-    }
+    this.removeMarkerFromMap();
     console.log('Parking method has been called');
 
     try {
 
       const parkingData = await this.fetchParking('scoordinate, mvalue, smetadata');
-      console.log('Parking data fetched:', parkingData);
 
       if (!parkingData || !parkingData.data) {
-        console.error('No industries data found');
+        console.error('No Gastronomy data found');
         return;
       }
 
       let parkingArray = [];
 
       parkingData.data.forEach(parked => {
-        console.log('Processing creative:', parked);
 
         if (parked["scoordinate"] && !isNaN(parked["scoordinate"].x) && !isNaN(parked["scoordinate"].y)) {
           const pos = [
@@ -420,9 +382,8 @@ class OpendatahubWeatherForecast extends HTMLElement {
           }).bindPopup(popup);
 
           parkingArray.push(marker);
-          console.log('Marker created at position:', pos);
         } else {
-          console.error('Invalid coordinates for creative:', parked);
+          console.error('Invalid coordinates for parking');
         }
       });
 
@@ -432,7 +393,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
         console.error('No valid markers to add to the map');
       }
     } catch (error) {
-      console.error('Error fetching or processing parking data:', error);
+      console.error('Error processing parking data', error);
     }
   }
 
@@ -450,6 +411,15 @@ class OpendatahubWeatherForecast extends HTMLElement {
         <div id="map" class="map"></div>
       </div>
     `;
+  }
+
+  removeMarkerFromMap() {
+    if (this.lcolumns) {
+      this.map.removeLayer(this.lcolumns);
+    }
+    if (this.layer_columns) {
+      this.map.removeLayer(this.layer_columns);
+    }
   }
 
   generateALayerForTheMarkers(arrayPoints) {
