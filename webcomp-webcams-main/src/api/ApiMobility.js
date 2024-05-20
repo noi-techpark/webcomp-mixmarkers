@@ -17,7 +17,7 @@ async function callGet(path, params) {
 
 export async function fetchCreative(source) {
   try {
-    const response = await callGet("/flat/CreativeIndustry?select=sname,scoordinate,smetadata.email,smetadata.address,smetadata.website", {
+    const response = await callGet("/flat/CreativeIndustry", {
       pagesize: 0,
       origin: config.mobilityAPI.ORIGIN,
     });

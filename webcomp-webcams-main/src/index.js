@@ -164,13 +164,16 @@ class OpendatahubWeatherForecast extends HTMLElement {
       const forecastdaily = result.ForeCastDaily;
       let weatherforecasttext = '';
       let weatherforecastpic = '';
+      let temp = '';
+      let shortTime = '';
 
       forecastdaily.forEach(myforecst => {
-        weatherforecasttext += myforecst['Date'] + ": " + myforecst['WeatherDesc'] + ",";
+
+        weatherforecasttext += myforecst['Date'].substring(0,10) + "   " + myforecst['WeatherDesc'] + ", ";
         weatherforecastpic += '<img class="weather-image" src="' + myforecst['WeatherImgUrl'] + '">';
       });
 
-      const popupbody = '<div class="webcampopup">' + weatherforecastpic + '</div><div class="webcampopuptext"><div><b>' + weatherforecasttext + '</b></div></div>';
+      const popupbody = '<div class="webcampopuptext">' + weatherforecastpic + '</div><div class="webcampopuptext"><div><b>' + weatherforecasttext + '</b></div></div>';
       let popup = L.popup().setContent(popupbody);
 
       let marker = L.marker(pos, {
@@ -187,7 +190,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
     console.log('Industries method has been called');
 
     try {
-      const industriesData = await this.fetchCreative('scoordinate,smetadata.email,sname,smetadata.address,smetadata.website');
+      const industriesData = await this.fetchCreative('scoordinate,smetadata,sname');
 
       if (!industriesData || !industriesData.data) {
         console.error('No industries data found');
@@ -205,12 +208,14 @@ class OpendatahubWeatherForecast extends HTMLElement {
           ];
 
           let icon = L.divIcon({
-            html: '<div class="iconMarkerMap"></div>',
-            iconSize: L.point(25, 25),
-            className: 'iconMarkerMap'
+            html: '<div class="iconMarkerWebcam"></div>',
+            iconSize: L.point(100, 100)
           });
 
-          const popupbody = '<div class="webcampopup">' + creative['sname'] + '</div>';
+          const popupbody = `<div class="webcampopuptext"><b>${creative["sname"]}</b><br><br>
+                                    ${creative["smetadata"].address}<br><br>Website: ${creative["smetadata"].website}<br>
+                                    Contact: ${creative["smetadata"].contacts}</div>`;
+
           let popup = L.popup().setContent(popupbody);
 
           let marker = L.marker(pos, {
@@ -222,7 +227,6 @@ class OpendatahubWeatherForecast extends HTMLElement {
           console.error('Invalid coordinates for creative:', creative);
         }
       });
-
       console.log('Num of created markers: ', arrayMarker.length);
 
       if (arrayMarker.length > 0) {
@@ -242,8 +246,8 @@ class OpendatahubWeatherForecast extends HTMLElement {
     try {
       //combined fetchInterestingPoints and fetchActivities, so it executes both call simultaneously
       const [interestingPointsData, activityData] = await Promise.all([
-        this.fetchInterestingPoints('Detail.it.Title,GpsInfo'),
-        this.fetchActivities('Detail.it.Title,GpsInfo')
+        this.fetchInterestingPoints('Detail.it,GpsInfo'),
+        this.fetchActivities('Detail.it,GpsInfo')
       ]);
 
       if (!interestingPointsData || !interestingPointsData.Items || interestingPointsData.Items.length === 0) {
@@ -275,7 +279,9 @@ class OpendatahubWeatherForecast extends HTMLElement {
           iconSize: L.point(100, 100)
         });
 
-        const popupbody = `<div class="webcampopuptext"><b>${point["Detail.it.Title"]}</b><br>Altitude: ${point.GpsInfo[0].Altitude} ${point.GpsInfo[0].AltitudeUnitofMeasure}</div>`;
+        const popupbody = `<div class="webcampopuptext"><b>${point["Detail.it"].Title}</b>
+                                  <br>Altitude: ${point.GpsInfo[0].Altitude} ${point.GpsInfo[0].AltitudeUnitofMeasure}
+                                  <br>${point["Detail.it"].BaseText}</div>`;
         let popup = L.popup().setContent(popupbody);
 
         let marker = L.marker(pos, {
@@ -284,6 +290,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
 
         arrayPoints.push(marker);
       });
+      console.log('Num of created markers: ', arrayPoints.length);
 
       this.generateALayerForTheMarkers(arrayPoints);
     } catch (error) {
@@ -336,6 +343,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
           console.error('No Refreshment points found');
         }
       });
+      console.log('Num of created markers: ', gastronomyArray.length);
 
       this.generateALayerForTheMarkers(gastronomyArray);
     } catch (e) {
@@ -367,9 +375,8 @@ class OpendatahubWeatherForecast extends HTMLElement {
           ];
 
           let icon = L.divIcon({
-            html: '<div class="iconMarkerMap"></div>',
-            iconSize: L.point(25, 25),
-            className: 'iconMarkerMap'
+            html: '<div class="iconMarkerWebcam"></div>',
+            iconSize: L.point(100, 100)
           });
 
           const popupbody = `<div class="webcampopuptext"><b>${parked["smetadata"].standard_name}<br></b>
@@ -386,6 +393,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
           console.error('Invalid coordinates for parking');
         }
       });
+      console.log('Num of created markers: ', parkingArray.length);
 
       if (parkingArray.length > 0) {
         this.generateALayerForTheMarkers(parkingArray);
