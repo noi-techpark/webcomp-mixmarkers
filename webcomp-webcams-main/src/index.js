@@ -8,7 +8,7 @@ import style__leaflet from 'leaflet/dist/leaflet.css';
 import style__markercluster from 'leaflet.markercluster/dist/MarkerCluster.css';
 import style from './scss/main.scss';
 import style__autocomplete from './scss/autocomplete.css';
-import { fetchWeatherForecast, fetchMunicipality, fetchInterestingPoints, fetchActivities, fetchGastronomy } from './api/ApiTurism.js';
+import { fetchWeatherForecast, fetchMunicipality, fetchInterestingPoints, fetchActivities, fetchGastronomy } from './api/ApiTourism.js';
 import { fetchCreative, fetchParking } from './api/ApiMobility';
 import { autocomplete } from './custom/autocomplete.js';
 import config from "./api/config";
@@ -42,7 +42,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
 
     this.shadow = this.attachShadow({ mode: "open" });
 
-    // the Bind functions avoid the possible lost of data
+    // the Bind function avoid the possible lost of data
     this.callForecastApiDrawMap = this.callForecastApiDrawMap.bind(this);
     this.callIndustriesApiDrawMap = this.callIndustriesApiDrawMap.bind(this);
     this.callInterestingPointsApiDrawMap = this.callInterestingPointsApiDrawMap.bind(this);
@@ -138,7 +138,6 @@ class OpendatahubWeatherForecast extends HTMLElement {
     }).addTo(this.map);
   }
 
-
   async callForecastApiDrawMap() {
     console.log('Forecast method has been called');
     this.removeMarkerFromMap();
@@ -164,11 +163,8 @@ class OpendatahubWeatherForecast extends HTMLElement {
       const forecastdaily = result.ForeCastDaily;
       let weatherforecasttext = '';
       let weatherforecastpic = '';
-      let temp = '';
-      let shortTime = '';
 
       forecastdaily.forEach(myforecst => {
-
         weatherforecasttext += myforecst['Date'].substring(0,10) + "   " + myforecst['WeatherDesc'] + ", ";
         weatherforecastpic += '<img class="weather-image" src="' + myforecst['WeatherImgUrl'] + '">';
       });
@@ -213,7 +209,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
           });
 
           const popupbody = `<div class="webcampopuptext"><b>${creative["sname"]}</b><br><br>
-                                    ${creative["smetadata"].address}<br><br>Website: ${creative["smetadata"].website}<br>
+                                    ${creative["smetadata"].address}<br><br>Website: <a href="${creative["smetadata"].website}" target="_blank">${creative["smetadata"].website}</a><br>
                                     Contact: ${creative["smetadata"].contacts}</div>`;
 
           let popup = L.popup().setContent(popupbody);
@@ -303,7 +299,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
     console.log('Gastronomy method has been called');
 
     try {
-      const gastronomyData = await this.fetchGastronomy('Detail.it.Title,GpsInfo');
+      const gastronomyData = await this.fetchGastronomy('Detail.it,GpsInfo,ContactInfos.it');
 
       if (!gastronomyData || !gastronomyData.Items || gastronomyData.Items.length === 0) {
         console.error('No gastronomy data found');
@@ -323,11 +319,16 @@ class OpendatahubWeatherForecast extends HTMLElement {
             html: '<div class="iconMarkerWebcam"></div>',
             iconSize: L.point(100, 100)
           });
+          let popupbody = `<div class="webcampopuptext"><b>${refreshmentPoint["Detail.it"].Title}</b><br>`;
 
-          let popupbody = `<div class="webcampopuptext"><b>${refreshmentPoint["Detail.it.Title"]}</b><br>`;
+          if (refreshmentPoint.GpsInfo[0].Altitude){
+            if (refreshmentPoint.GpsInfo[0].Altitude !== 0) { // Se l'Altitudine è 0, non viene mostrata nel popup
+              popupbody += `<br>Altitude: ${refreshmentPoint.GpsInfo[0].Altitude} ${refreshmentPoint.GpsInfo[0].AltitudeUnitofMeasure}`;
+            }
+          }
 
-          if (refreshmentPoint.GpsInfo[0].Altitude !== 0) { // if the Altitude is 0, it has not been shown in the popup
-            popupbody += `Altitude: ${refreshmentPoint.GpsInfo[0].Altitude} ${refreshmentPoint.GpsInfo[0].AltitudeUnitofMeasure}`;
+          if (refreshmentPoint["ContactInfos.it"].Url !== null) { // Verifica se l'URL non è null o undefined
+            popupbody += `<br>Website: <a href="${refreshmentPoint["ContactInfos.it"].Url}" target="_blank">${refreshmentPoint["ContactInfos.it"].Url}</a>`;
           }
 
           popupbody += `</div>`;

@@ -6,10 +6,10 @@ import axios from "axios";
 import config from "./config";
 
 export function callGet(path, params) {
-  console.log("Turism path = " + config.turismAPI.API_BASE_URL + path);
+  console.log("Turism path = " + config.tourismAPI.API_BASE_URL + path);
 
   return axios
-    .get(config.turismAPI.API_BASE_URL + path, {
+    .get(config.tourismAPI.API_BASE_URL + path, {
       params: params
     })
     .then(function(response) {
@@ -70,7 +70,7 @@ export async function fetchDistricts(fields) {
 
 export async function fetchMunicipality(fields) {
   return callGet("/Municipality", {
-    origin: config.turismAPI.ORIGIN,
+    origin: config.tourismAPI.ORIGIN,
     fields: fields
   })
     .then(response => {
@@ -87,7 +87,7 @@ export async function fetchMunicipality(fields) {
 export async function fetchInterestingPoints(fields) {
   try {
     const response = await callGet("/ODHActivityPoi?tagfilter=poi&active=true", {
-      origin: config.turismAPI.ORIGIN,
+      origin: config.tourismAPI.ORIGIN,
       fields: fields
     });
     console.log('interesting = response');
@@ -101,7 +101,7 @@ export async function fetchInterestingPoints(fields) {
 export async function fetchActivities(fields) {
   try {
     const response = await callGet("/ODHActivityPoi?tagfilter=activity&active=true", {
-      origin: config.turismAPI.ORIGIN,
+      origin: config.tourismAPI.ORIGIN,
       fields: fields
     });
     console.log('activities = response = ');
@@ -116,7 +116,7 @@ export async function fetchGastronomy(fields) {
   try {
     const response = await callGet("/ODHActivityPoi?tagfilter=gastronomy&active=true", {
       pagesize: 0,
-      origin: config.turismAPI.ORIGIN,
+      origin: config.tourismAPI.ORIGIN,
       fields: fields
     });
     console.log('gastronomy = response = ');

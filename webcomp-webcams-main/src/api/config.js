@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 export default {
-  turismAPI: {    //Weather, Interesting Points, Activities, Gastronomies
+  tourismAPI: {    //Weather, Interesting Points, Activities, Gastronomies
     API_BASE_URL: 'https://tourism.api.opendatahub.com/v1',
     //API_BASE_URL: 'https://api.tourism.testingmachine.eu/v1',
     ORIGIN: 'webcomp-weatherforecast'
