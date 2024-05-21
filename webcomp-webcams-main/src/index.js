@@ -100,26 +100,31 @@ class OpendatahubWeatherForecast extends HTMLElement {
     if (firstButton) {
       firstButton.addEventListener("click", () => {
         console.log('First button clicked');
+        this.removeMarkerFromMap();
         this.callForecastApiDrawMap();
       });
     } if (secondButton) {
       secondButton.addEventListener("click", () => {
         console.log('Second button clicked');
+        this.removeMarkerFromMap();
         this.callIndustriesApiDrawMap();
       });
     } if (thirdButton) {
       thirdButton.addEventListener("click", () => {
         console.log('Third button clicked');
+        this.removeMarkerFromMap();
         this.callInterestingPointsApiDrawMap();
       });
     } if (fourthButton) {
       fourthButton.addEventListener("click", () => {
         console.log('Fourth Button clicked');
+        this.removeMarkerFromMap();
         this.callGastronomiesApiDrawMap();
       });
     } if (fifthButton) {
       fifthButton.addEventListener("click", () => {
         console.log('Fifth Button clicked');
+        this.removeMarkerFromMap();
         this.callParkingApiDrawMap();
       });
     }
@@ -138,9 +143,9 @@ class OpendatahubWeatherForecast extends HTMLElement {
     }).addTo(this.map);
   }
 
-  async callForecastApiDrawMap() {
+  async callForecastApiDrawMap() {    //WEATHER FORECAST
     console.log('Forecast method has been called');
-    this.removeMarkerFromMap();
+
     await this.fetchWeatherForecast();
     await this.fetchMunicipality('Detail.it.Title,GpsPoints.position,IstatNumber');
 
@@ -181,8 +186,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
     this.generateALayerForTheMarkers(columns_layer_array);
   }
 
-  async callIndustriesApiDrawMap() {
-    this.removeMarkerFromMap();
+  async callIndustriesApiDrawMap() {    //CREATIVE INDUSTRY
     console.log('Industries method has been called');
 
     try {
@@ -235,8 +239,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
     }
   }
 
-  async callInterestingPointsApiDrawMap() {
-    this.removeMarkerFromMap();
+  async callInterestingPointsApiDrawMap() {   // INTERESTING POINTS & ACTIVITY
     console.log('InterestPoints&Activity method has been called');
 
     try {
@@ -294,8 +297,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
     }
   }
 
-  async callGastronomiesApiDrawMap(){
-    this.removeMarkerFromMap();
+  async callGastronomiesApiDrawMap(){   // GASTRONOMY
     console.log('Gastronomy method has been called');
 
     try {
@@ -352,8 +354,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
     }
   }
 
-  async callParkingApiDrawMap() {
-    this.removeMarkerFromMap();
+  async callParkingApiDrawMap() {   // PARKING SPACES
     console.log('Parking method has been called');
 
     try {
@@ -422,13 +423,16 @@ class OpendatahubWeatherForecast extends HTMLElement {
     `;
   }
 
-  removeMarkerFromMap() {
+  removeMarkerFromMap() {   //remove existing markers
     if (this.lcolumns) {
       this.map.removeLayer(this.lcolumns);
+      this.lcolumns.clearLayers();
     }
     if (this.layer_columns) {
       this.map.removeLayer(this.layer_columns);
+      this.layer_columns.clearLayers();
     }
+    console.log('existing markers has been removed');
   }
 
   generateALayerForTheMarkers(arrayPoints) {

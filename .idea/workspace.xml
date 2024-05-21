@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5e95c56e-a137-4ab6-9f3a-1cad10bc5626" name="Changes" comment="qualche modifica. ho aggiunto un file di nome Component_Description.md contenente la descrizione del progetto">
+      <change afterPath="$PROJECT_DIR$/webcomp-webcams-main/public/buttonClass.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-webcams-main/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-webcams-main/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/scss/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-webcams-main/src/scss/main.scss" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="x6fhs1l5" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2gTBwfagl2ceX4hoCkwShi7ZlBd" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.index.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/webcomp-gastronomies-main/webcomp-gastronomies-main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
+    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\Download\\IntelliJ\\IntelliJ IDEA 2024.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\.EMANUELE\.UniBz\Bootcamp\bootcamp\webcomp-webcams-main\public" />
+      <recent name="D:\.EMANUELE\.UniBz\Bootcamp\bootcamp\webcomp-webcams-main\src" />
+      <recent name="D:\.EMANUELE\.UniBz\Bootcamp\bootcamp\webcomp-webcams-main\src\scss" />
+      <recent name="D:\.EMANUELE\.UniBz\Bootcamp\bootcamp" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5e95c56e-a137-4ab6-9f3a-1cad10bc5626" name="Changes" comment="" />
+      <created>1715711928134</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1715711928134</updated>
+      <workItem from="1715711928590" duration="469000" />
+      <workItem from="1715712608392" duration="17000" />
+      <workItem from="1715861485146" duration="3477000" />
+      <workItem from="1715879227064" duration="218000" />
+      <workItem from="1715879813510" duration="1250000" />
+      <workItem from="1715885917380" duration="14650000" />
+      <workItem from="1715947473735" duration="11617000" />
+      <workItem from="1716019335167" duration="69523000" />
+      <workItem from="1716196905871" duration="5016000" />
+      <workItem from="1716230364248" duration="7330000" />
+      <workItem from="1716239515609" duration="456000" />
+      <workItem from="1716240214632" duration="923000" />
+      <workItem from="1716290314469" duration="15988000" />
+    </task>
+    <task id="LOCAL-00001" summary="added the API for creative Industries. i'm trying to set that when a button is pressed, the pointers of forecast disappear while appear those for industries. I'm a bit stuck with the buttons and the css js. it should work, but i did not tested if pressing the buttons i can effectively switch between forecast and industry. To run the localhost, do: npm run start">
+      <option name="closed" value="true" />
+      <created>1715899769912</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1715899769912</updated>
+    </task>
+    <task id="LOCAL-00002" summary="ho cercato di sistemare la lettura dell'api. penso sia giusto fino a dove il metodo callIndustriesApiDrawMap() legge le coordinate. il resto l'ho fato come il metodo precedente (che c'era già). ma non mi funziona. non capisco il motivo. Bisogna inoltre sistemare la posizione del css dei bottoni.">
+      <option name="closed" value="true" />
+      <created>1716030517695</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716030517695</updated>
+    </task>
+    <task id="LOCAL-00003" summary="ho sistemato le chiamate all'api. sto sistemando caaIndustriesApiDrawMap() in index.js. sono a riga 173. bisogna inoltre controllare perché i bottoni non riescono a raggiungere ed eseguire le funzioni in index.js. index.js viene eseguito appena il file parte, senza che io prema nulla. controllare e modificare anche questa cosa(devono partire alla premuta dei buttons.">
+      <option name="closed" value="true" />
+      <created>1716069294633</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716069294633</updated>
+    </task>
+    <task id="LOCAL-00004" summary="gli API vengono letti correttamente. inoltre i marker vengono mostrati correttamente sulla mappa. SIAMO A BUON PUNTO! rimane da sistemare la grafica,e le informazioni che appaiono.">
+      <option name="closed" value="true" />
+      <created>1716131631115</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716131631115</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Rimane solo da sistemare la grafica,e le informazioni che appaiono. Dopodiché, se rimane tempo, vorrei collegare l'API dei parcheggi">
+      <option name="closed" value="true" />
+      <created>1716133100265</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716133100265</updated>
+    </task>
+    <task id="LOCAL-00006" summary="ho aggiunto le attività">
+      <option name="closed" value="true" />
+      <created>1716148679859</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716148679859</updated>
+    </task>
+    <task id="LOCAL-00007" summary="ho aggiunto le gastronomie">
+      <option name="closed" value="true" />
+      <created>1716155194733</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1716155194733</updated>
+    </task>
+    <task id="LOCAL-00008" summary="ho aggiunto i parcheggi">
+      <option name="closed" value="true" />
+      <created>1716159791297</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1716159791297</updated>
+    </task>
+    <task id="LOCAL-00009" summary="sto sistemando la formattazione del testo">
+      <option name="closed" value="true" />
+      <created>1716161822072</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1716161822072</updated>
+    </task>
+    <task id="LOCAL-00010" summary="cleaning up of the code">
+      <option name="closed" value="true" />
+      <created>1716202143501</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1716202143501</updated>
+    </task>
+    <task id="LOCAL-00011" summary="qualche modifica. Il design fa ancora un po' schifo. bisogna modificare il design dei popup body, e il contenuto (vedere cosa si può aggiungere)">
+      <option name="closed" value="true" />
+      <created>1716239938910</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1716239938910</updated>
+    </task>
+    <task id="LOCAL-00012" summary="qualche modifica. ho aggiunto un file di nome Component_Description.md contenente la descrizione del progetto">
+      <option name="closed" value="true" />
+      <created>1716315155402</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1716315155402</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="added the API for creative Industries. i'm trying to set that when a button is pressed, the pointers of forecast disappear while appear those for industries. I'm a bit stuck with the buttons and the css js. it should work, but i did not tested if pressing the buttons i can effectively switch between forecast and industry." />
+    <MESSAGE value="added the API for creative Industries. i'm trying to set that when a button is pressed, the pointers of forecast disappear while appear those for industries. I'm a bit stuck with the buttons and the css js. it should work, but i did not tested if pressing the buttons i can effectively switch between forecast and industry. To run the localhost, do: npm run start" />
+    <MESSAGE value="ho cercato di sistemare la lettura dell'api. penso sia giusto fino a dove il metodo callIndustriesApiDrawMap() legge le coordinate. il resto l'ho fato come il metodo precedente (che c'era già). ma non mi funziona. non capisco il motivo." />
+    <MESSAGE value="ho cercato di sistemare la lettura dell'api. penso sia giusto fino a dove il metodo callIndustriesApiDrawMap() legge le coordinate. il resto l'ho fato come il metodo precedente (che c'era già). ma non mi funziona. non capisco il motivo. Bisogna inoltre sistemare la posizione del css dei bottoni." />
+    <MESSAGE value="ho sistemato le chiamate all'api. sto sistemando caaIndustriesApiDrawMap() in index.js. sono a riga 173. bisogna inoltre controllare perché i bottoni non riescono a raggiungere ed eseguire le funzioni in index.js. index.js viene eseguito appena il file parte, senza che io prema nulla. controllare e modificare anche questa cosa(devono partire alla premuta dei buttons." />
+    <MESSAGE value="gli API vengono letti correttamente. inoltre i marker vengono mostrati correttamente sulla mappa. SIAMO A BUON PUNTO! rimane da sistemare la grafica,e le informazioni che appaiono." />
+    <MESSAGE value="Rimane solo da sistemare la grafica,e le informazioni che appaiono. Dopodiché, se rimane tempo, vorrei collegare l'API dei parcheggi" />
+    <MESSAGE value="ho aggiunto le attività" />
+    <MESSAGE value="ho aggiunto le gastronomie" />
+    <MESSAGE value="ho aggiunto i parcheggi" />
+    <MESSAGE value="sto sistemando la formattazione del testo" />
+    <MESSAGE value="cleaning up of the code" />
+    <MESSAGE value="qualche modifica. Il design fa ancora un po' schifo. bisogna modificare il design dei popup body, e il contenuto (vedere cosa si può aggiungere)" />
+    <MESSAGE value="qualche modifica. ho aggiunto un file di nome Component_Description.md contenente la descrizione del progetto" />
+    <option name="LAST_COMMIT_MESSAGE" value="qualche modifica. ho aggiunto un file di nome Component_Description.md contenente la descrizione del progetto" />
+  </component>
+</project>

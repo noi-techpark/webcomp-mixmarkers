@@ -179,7 +179,10 @@
 
   .webcampopuptext
   {
-    margin: 10px 10px 10px 10px;
+    margin: 0px 0px 10px 5px;
+    padding: 2px 0px 5px 5px;
+    max-height: 200px;
+    overflow-y: auto;
   }
 
   .search-input {
@@ -213,9 +216,8 @@
   }
 
   .leaflet-popup-content{
-    margin: 0px 0px 12px 0px;
-  }
-
-  .leaflet-popup-content-wrapper{
-    padding: 0px;
+    margin: 0px 5px 10px 0px;
+    min-width: auto;
+    min-height: 70px;
+    max-height: 200px;
   }
