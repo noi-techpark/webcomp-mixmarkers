@@ -282,11 +282,12 @@ class OpendatahubWeatherForecast extends HTMLElement {
           iconSize: L.point(100, 100)
         });
 
+        /*
         let imageUrl = '';
         if (point["Detail.it"].ImageGallery && point["Detail.it"].ImageGallery.length > 0) {
           imageUrl = point["Detail.it"].ImageGallery[0].Url;
         }
-
+        */
         const popupbody = `<div class="webcampopuptext">
                           <b>${point["Detail.it"].Title}</b><br>
                           <img class="interest-point-image" src="${imageUrl}" alt="${point["Detail.it"].Title}">
