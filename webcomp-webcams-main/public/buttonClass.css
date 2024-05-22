@@ -5,51 +5,63 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  font-size: 30px;
+  font-size: 24px;
   z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  border: none;
+  cursor: pointer;
 }
 
-#firstButton, #secondButton, #thirdButton, #fourthButton, #fifthButton {
+#sidebar button {
   display: none;
   position: fixed;
   right: 20px;
   z-index: 1001;
   font-size: 24px;
-  width: 250px;
+  width: 280px;
   text-align: left;
-  padding-left: 10px;
-  padding-bottom: 5px;
-  max-height: 32px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  border: none;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-#firstButton {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
+  #sidebar button:hover {
+    background-color: #e0e0e0;
+  }
 
-#secondButton, #thirdButton, #fourthButton {
-  border-radius: 0px;
-}
+  #firstButton {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
 
-#fifthButton {
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
+  #secondButton, #thirdButton, #fourthButton {
+    border-radius: 0px;
+  }
 
-/* Posizione di ciascun pulsante */
-#firstButton { top: 60px; }
-#secondButton { top: 93px; }
-#thirdButton { top: 126px; }
-#fourthButton { top: 159px; }
-#fifthButton { top: 192px; }
+  #fifthButton {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
 
+  /* Posizione pulsanti */
+  #firstButton { top: 60px; }
+  #secondButton { top: 120px; }
+  #thirdButton { top: 180px; }
+  #fourthButton { top: 240px; }
+  #fifthButton { top: 300px; }
 
-button .emoji {
-  font-size: 1em;
-  margin-bottom: 5px;
-  vertical-align: top;
-}
+  button .emoji {
+    font-size: 1.5em;
+    margin-right: 10px;
+  }
 
-button .button-text {
-  vertical-align: middle;
-}
+  button .button-text {
+    flex: 1;
+  }

@@ -182,6 +182,7 @@
     margin: 0px 0px 10px 5px;
     padding: 2px 0px 5px 5px;
     max-height: 200px;
+    max-weight:auto;
     overflow-y: auto;
   }
 
@@ -218,6 +219,39 @@
   .leaflet-popup-content{
     margin: 0px 5px 10px 0px;
     min-width: auto;
+    width: auto;
     min-height: 70px;
     max-height: 200px;
+  }
+
+  .weather-forecast-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .weather-forecast-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
+  }
+
+  .weather-image {
+    width: 50px; /* Dimensione dell'immagine */
+    height: 50px;
+  }
+
+  .weather-text {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 12px;
+  }
+
+  .interest-point-image {
+    width: 100px;
+    height: auto;
+    margin-top: 5px;
   }

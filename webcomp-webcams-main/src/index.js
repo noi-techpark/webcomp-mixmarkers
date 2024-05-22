@@ -143,7 +143,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
     }).addTo(this.map);
   }
 
-  async callForecastApiDrawMap() {    //WEATHER FORECAST
+  async callForecastApiDrawMap() {
     console.log('Forecast method has been called');
 
     await this.fetchWeatherForecast();
@@ -151,7 +151,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
 
     let columns_layer_array = [];
 
-    this.municipalities.map(municipality => {
+    this.municipalities.forEach(municipality => {
       const pos = [
         municipality["GpsPoints.position"].Latitude,
         municipality["GpsPoints.position"].Longitude
@@ -165,26 +165,31 @@ class OpendatahubWeatherForecast extends HTMLElement {
       const myweatherforecast = this.weather;
       let result = myweatherforecast.find(o => o['MunicipalityIstatCode'] === municipality['IstatNumber']);
 
-      const forecastdaily = result.ForeCastDaily;
-      let weatherforecasttext = '';
-      let weatherforecastpic = '';
+      if (result) {
+        const forecastdaily = result.ForeCastDaily.slice(0, 3); // Prendi solo i primi 3 giorni
+        let weatherforecastpic = '';
 
-      forecastdaily.forEach(myforecst => {
-        weatherforecasttext += myforecst['Date'].substring(0,10) + "   " + myforecst['WeatherDesc'] + ", ";
-        weatherforecastpic += '<img class="weather-image" src="' + myforecst['WeatherImgUrl'] + '">';
-      });
+        forecastdaily.forEach(myforecast => {
+          weatherforecastpic += `<div class="weather-forecast-item">
+                                 <img class="weather-image" src="${myforecast['WeatherImgUrl']}">
+                                 <div class="weather-text"><b>${myforecast['Date'].substring(0, 10)}<br>${myforecast['WeatherDesc']}</b></div>
+                               </div>`;
+        });
 
-      const popupbody = '<div class="webcampopuptext">' + weatherforecastpic + '</div><div class="webcampopuptext"><div><b>' + weatherforecasttext + '</b></div></div>';
-      let popup = L.popup().setContent(popupbody);
+        const popupbody = `<div class="weather-forecast-container">${weatherforecastpic}</div>`;
+        let popup = L.popup().setContent(popupbody);
 
-      let marker = L.marker(pos, {
-        icon: icon,
-      }).bindPopup(popup);
+        let marker = L.marker(pos, {
+          icon: icon,
+        }).bindPopup(popup);
 
-      columns_layer_array.push(marker);
+        columns_layer_array.push(marker);
+      }
     });
+
     this.generateALayerForTheMarkers(columns_layer_array);
   }
+
 
   async callIndustriesApiDrawMap() {    //CREATIVE INDUSTRY
     console.log('Industries method has been called');
@@ -239,11 +244,11 @@ class OpendatahubWeatherForecast extends HTMLElement {
     }
   }
 
-  async callInterestingPointsApiDrawMap() {   // INTERESTING POINTS & ACTIVITY
+  async callInterestingPointsApiDrawMap() {
     console.log('InterestPoints&Activity method has been called');
 
     try {
-      //combined fetchInterestingPoints and fetchActivities, so it executes both call simultaneously
+      // Combined fetchInterestingPoints and fetchActivities, so it executes both calls simultaneously
       const [interestingPointsData, activityData] = await Promise.all([
         this.fetchInterestingPoints('Detail.it,GpsInfo'),
         this.fetchActivities('Detail.it,GpsInfo')
@@ -264,7 +269,6 @@ class OpendatahubWeatherForecast extends HTMLElement {
       }
 
       let arrayPoints = [];
-
       const interestingPointsAndActivityData = [...interestingPointsData.Items, ...activityData.Items];
 
       interestingPointsAndActivityData.forEach(point => {
@@ -278,9 +282,17 @@ class OpendatahubWeatherForecast extends HTMLElement {
           iconSize: L.point(100, 100)
         });
 
-        const popupbody = `<div class="webcampopuptext"><b>${point["Detail.it"].Title}</b>
-                                  <br>Altitude: ${point.GpsInfo[0].Altitude} ${point.GpsInfo[0].AltitudeUnitofMeasure}
-                                  <br>${point["Detail.it"].BaseText}</div>`;
+        let imageUrl = '';
+        if (point["Detail.it"].ImageGallery && point["Detail.it"].ImageGallery.length > 0) {
+          imageUrl = point["Detail.it"].ImageGallery[0].Url;
+        }
+
+        const popupbody = `<div class="webcampopuptext">
+                          <b>${point["Detail.it"].Title}</b><br>
+                          <img class="interest-point-image" src="${imageUrl}" alt="${point["Detail.it"].Title}">
+                          <br>Altitude: ${point.GpsInfo[0].Altitude} ${point.GpsInfo[0].AltitudeUnitofMeasure}
+                          <br>${point["Detail.it"].BaseText}
+                        </div>`;
         let popup = L.popup().setContent(popupbody);
 
         let marker = L.marker(pos, {
@@ -289,13 +301,14 @@ class OpendatahubWeatherForecast extends HTMLElement {
 
         arrayPoints.push(marker);
       });
-      console.log('Num of created markers: ', arrayPoints.length);
 
+      console.log('Num of created markers: ', arrayPoints.length);
       this.generateALayerForTheMarkers(arrayPoints);
     } catch (error) {
       console.error('Error in processing Interesting Points & Activity data:', error);
     }
   }
+
 
   async callGastronomiesApiDrawMap(){   // GASTRONOMY
     console.log('Gastronomy method has been called');
@@ -450,7 +463,6 @@ class OpendatahubWeatherForecast extends HTMLElement {
     this.lcolumns.addLayers(arrayPoints);
     this.map.addLayer(this.lcolumns);
   }
-
 }
 
 customElements.define('webcomp-weatherforecast', OpendatahubWeatherForecast);
