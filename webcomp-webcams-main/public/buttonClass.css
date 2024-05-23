@@ -1,3 +1,4 @@
+/* it sets the sidebar size and position */
 .sidebar-toggle {
   position: fixed;
   top: 25px;
@@ -15,6 +16,7 @@
   cursor: pointer;
 }
 
+/* it sets the sidebar buttons action and positions */
 #sidebar button {
   display: none;
   position: fixed;
@@ -36,6 +38,7 @@
     background-color: #e0e0e0;
   }
 
+/* buttons details */
   #firstButton {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -50,7 +53,7 @@
     border-bottom-right-radius: 10px;
   }
 
-  /* Posizione pulsanti */
+  /* Buttons positions */
   #firstButton { top: 60px; }
   #secondButton { top: 120px; }
   #thirdButton { top: 180px; }
