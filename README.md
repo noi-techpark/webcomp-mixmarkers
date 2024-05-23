@@ -4,13 +4,14 @@ SPDX-FileCopyrightText: NOI Techpark <digital@noi.bz.it>
 SPDX-License-Identifier: CC0-1.0
 -->
 
-# Webcomponent Opendatahub Webcams 
+# Webcomponent Opendatahub Webcams
 
 [![REUSE Compliance](https://github.com/noi-techpark/webcomp-boilerplate/actions/workflows/reuse.yml/badge.svg)](https://github.com/noi-techpark/odh-docs/wiki/REUSE#badges)
 [![REUSE status](https://api.reuse.software/badge/github.com/noi-techpark/webcomp-boilerplate)](https://api.reuse.software/info/github.com/noi-techpark/webcomp-boilerplate)
 [![CI/CD](https://github.com/noi-techpark/webcomp-boilerplate/actions/workflows/main.yml/badge.svg)](https://github.com/noi-techpark/webcomp-boilerplate/actions/workflows/main.yml)
 
-This webcomponent shows all available webcams from opendatahub which are provided with a valid GPS point on a simple map.
+This webcomponent shows all creative industries, gastronomy, points of interests, and parking places (//available webcams no more)
+from opendatahub which are provided with a valid GPS point on a simple map.
 
 - [Webcomponent Webcams](#webcomponent-opendatahub-webcams)
   - [Usage](#usage)
@@ -85,7 +86,8 @@ For a ready to use Docker environment with all prerequisites already installed a
 Get a copy of the repository:
 
 ```bash
-ToDo: git clone https://github.com/noi-techpark/webcomp-webcams.git
+ToDo: git clone https://github.com/epippa/OpenDataHub_WebComponent
+    //https://github.com/noi-techpark/webcomp-webcams.git is the original one (made from Techpark team)
 ```
 
 Change directory:
@@ -132,7 +134,7 @@ npm run build
 ## Run with docker
 
 If you want to test the webcomponent on a local instance of the [webcomponent store](https://webcomponents.opendatahub.com/) to make sure that it will run correctly also on the real store.
-You can also access the webcomponent running in a simple separated docker container outside of the store.
+You can also access the webcomponent running in a simple separated docker container outside the store.
 
 If you have already developed your webcomponent and now want to test it on a local instance of the store, just copy `.env.example`, `docker-compose.yml`, `wcs-manifest.json` and `infrastructure/docker` into your root folder. Adjust your `package.json` and `wcs-manifest.json` files as described on the top of this readme. Then follow the instructions below.
 
