@@ -13,6 +13,12 @@ import { fetchCreative, fetchParking } from './api/ApiMobility';
 import { autocomplete } from './custom/autocomplete.js';
 import config from "./api/config";
 
+/*
+* This OpendatahubWeatherForecast() class handles the recover and the visualization of the weather forecast, creative industries,
+* points of interest, gastronomy, and parking.
+* This class contains methods to call the APIs (Mobility & Tourism), elaborate the recived data, and update the map
+* with the pertinent information.
+*/
 class OpendatahubWeatherForecast extends HTMLElement {
   constructor() {
     super();
@@ -282,12 +288,8 @@ class OpendatahubWeatherForecast extends HTMLElement {
           iconSize: L.point(100, 100)
         });
 
-        /*
         let imageUrl = '';
-        if (point["Detail.it"].ImageGallery && point["Detail.it"].ImageGallery.length > 0) {
-          imageUrl = point["Detail.it"].ImageGallery[0].Url;
-        }
-        */
+
         const popupbody = `<div class="webcampopuptext">
                           <b>${point["Detail.it"].Title}</b><br>
                           <img class="interest-point-image" src="${imageUrl}" alt="${point["Detail.it"].Title}">
@@ -367,13 +369,12 @@ class OpendatahubWeatherForecast extends HTMLElement {
       console.error('Error in porcessing gastronomy data:', e);
     }
   }
-  
+
   /*
   callParkingDrawMap() recovers the parking's data using the fetchParking function,
-  computes the occupation's percentage, and displays the markers on the map, with a popup containing the
-  parking info.
+  displays the markers on the map, with a popup containing the
+  parking info: address and capacity's data.
   */
-
   async callParkingApiDrawMap() {   // PARKING SPACES
     console.log('Parking method has been called');
 
@@ -419,8 +420,8 @@ class OpendatahubWeatherForecast extends HTMLElement {
       });
       console.log('Num of created markers: ', parkingArray.length);
 
-      //Generates a layer on the map for the markers
       if (parkingArray.length > 0) {
+        //calls the markers creator
         this.generateALayerForTheMarkers(parkingArray);
       } else {
         console.error('No valid markers to add to the map');
@@ -446,7 +447,8 @@ class OpendatahubWeatherForecast extends HTMLElement {
     `;
   }
 
-  removeMarkerFromMap() {   //remove existing markers
+  //remove existing markers
+  removeMarkerFromMap() {
     if (this.lcolumns) {
       this.map.removeLayer(this.lcolumns);
       this.lcolumns.clearLayers();
@@ -458,6 +460,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
     console.log('existing markers has been removed');
   }
 
+  //Generates a layer on the map for the markers
   generateALayerForTheMarkers(arrayPoints) {
     this.lcolumns = new L.MarkerClusterGroup({
       showCoverageOnHover: false,
