@@ -367,12 +367,18 @@ class OpendatahubWeatherForecast extends HTMLElement {
       console.error('Error in porcessing gastronomy data:', e);
     }
   }
+  
+  /*
+  callParkingDrawMap() recovers the parking's data using the fetchParking function,
+  computes the occupation's percentage, and displays the markers on the map, with a popup containing the
+  parking info.
+  */
 
   async callParkingApiDrawMap() {   // PARKING SPACES
     console.log('Parking method has been called');
 
     try {
-
+      //recovers parking's data
       const parkingData = await this.fetchParking('scoordinate, mvalue, smetadata');
 
       if (!parkingData || !parkingData.data) {
@@ -382,6 +388,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
 
       let parkingArray = [];
 
+      //Iterates the parking data to create the markers
       parkingData.data.forEach(parked => {
 
         if (parked["scoordinate"] && !isNaN(parked["scoordinate"].x) && !isNaN(parked["scoordinate"].y)) {
@@ -395,6 +402,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
             iconSize: L.point(100, 100)
           });
 
+          //Defines the popup content
           const popupbody = `<div class="webcampopuptext"><b>${parked["smetadata"].standard_name}<br></b>
                                     Free Spots: <b>${parked["mvalue"]}</b> / ${parked["smetadata"].capacity}<br><br>
                                     ${parked["smetadata"].mainaddress}, ${parked["smetadata"].municipality}</div>`;
@@ -411,6 +419,7 @@ class OpendatahubWeatherForecast extends HTMLElement {
       });
       console.log('Num of created markers: ', parkingArray.length);
 
+      //Generates a layer on the map for the markers
       if (parkingArray.length > 0) {
         this.generateALayerForTheMarkers(parkingArray);
       } else {
