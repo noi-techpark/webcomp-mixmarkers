@@ -5,7 +5,58 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e95c56e-a137-4ab6-9f3a-1cad10bc5626" name="Changes" comment="index.js documentation completed">
-      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/public/buttonClass.css" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-webcams-main/public/buttonClass.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/.env.example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/.github/workflows/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/.github/workflows/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/.github/workflows/reuse.yml" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/.github/workflows/reuse.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/.pre-commit-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/.pre-commit-config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/.reuse/dep5" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/.reuse/dep5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/LICENSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/LICENSE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/LICENSES/AGPL-3.0-or-later.txt" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/LICENSES/AGPL-3.0-or-later.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/LICENSES/CC0-1.0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/LICENSES/CC0-1.0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/Webcams" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/Webcams" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/gif/cloud-light.gif" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/gif/cloud-light.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/gif/haze.gif" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/gif/haze.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/gif/heavy-rain.gif" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/gif/heavy-rain.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/gif/light-snow.gif" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/gif/light-snow.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/gif/partial-cloud-day.gif" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/gif/partial-cloud-day.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/gif/rain-cloud.gif" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/gif/rain-cloud.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/gif/rain.gif" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/gif/rain.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/gif/snow.gif" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/gif/snow.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/gif/storm.gif" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/gif/storm.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/gif/sun-rain-cloud.gif" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/gif/sun-rain-cloud.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/gif/sun.gif" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/gif/sun.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/gif/wind.gif" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/gif/wind.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/public/buttonClass.css" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/public/buttonClass.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/api/ApiMobility.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/src/api/ApiMobility.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/api/ApiTourism.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/src/api/ApiTourism.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/api/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/src/api/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/assets/4291408.png" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/src/assets/4291408.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/assets/4291408_klein.png" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/src/assets/4291408_klein.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/assets/map_marker.png" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/src/assets/map_marker.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/assets/map_marker_mini.png" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/src/assets/map_marker_mini.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/assets/marker_red.png" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/src/assets/marker_red.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/assets/marker_red_small.png" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/src/assets/marker_red_small.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/assets/marker_red_small_24.png" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/src/assets/marker_red_small_24.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/assets/marker_red_small_32.png" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/src/assets/marker_red_small_32.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/assets/webcam_marker.png" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/src/assets/webcam_marker.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/custom/autocomplete.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/src/custom/autocomplete.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/scss/_colors.scss" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/src/scss/_colors.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/scss/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/src/scss/_mixins.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/scss/autocomplete.css" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/src/scss/autocomplete.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/scss/main.scss" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/src/scss/main.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/wcs-logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/wcs-logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/wcs-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/wcs-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/webpack.dev.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/webpack.dev.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/webpack.prod.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-mix/webpack.prod.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +151,7 @@
       <workItem from="1716240214632" duration="923000" />
       <workItem from="1716290314469" duration="16284000" />
       <workItem from="1716360552084" duration="202000" />
-      <workItem from="1716484575558" duration="4485000" />
+      <workItem from="1716484575558" duration="4890000" />
     </task>
     <task id="LOCAL-00001" summary="added the API for creative Industries. i'm trying to set that when a button is pressed, the pointers of forecast disappear while appear those for industries. I'm a bit stuck with the buttons and the css js. it should work, but i did not tested if pressing the buttons i can effectively switch between forecast and industry. To run the localhost, do: npm run start">
       <option name="closed" value="true" />
