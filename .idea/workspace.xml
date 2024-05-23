@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e95c56e-a137-4ab6-9f3a-1cad10bc5626" name="Changes" comment="i'm writing the documentation">
+    <list default="true" id="5e95c56e-a137-4ab6-9f3a-1cad10bc5626" name="Changes" comment="index.js documentation completed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-webcams-main/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Component_Description.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-webcams-main/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/api/ApiMobility.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-webcams-main/src/api/ApiMobility.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webcomp-webcams-main/src/api/ApiTourism.js" beforeDir="false" afterPath="$PROJECT_DIR$/webcomp-webcams-main/src/api/ApiTourism.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +104,7 @@
       <workItem from="1716240214632" duration="923000" />
       <workItem from="1716290314469" duration="16284000" />
       <workItem from="1716360552084" duration="202000" />
-      <workItem from="1716484575558" duration="2909000" />
+      <workItem from="1716484575558" duration="4166000" />
     </task>
     <task id="LOCAL-00001" summary="added the API for creative Industries. i'm trying to set that when a button is pressed, the pointers of forecast disappear while appear those for industries. I'm a bit stuck with the buttons and the css js. it should work, but i did not tested if pressing the buttons i can effectively switch between forecast and industry. To run the localhost, do: npm run start">
       <option name="closed" value="true" />
@@ -215,7 +218,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716484674826</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="index.js documentation completed">
+      <option name="closed" value="true" />
+      <created>1716487537138</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1716487537138</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,6 +250,7 @@
     <MESSAGE value="qualche modifica. ho aggiunto un file di nome Component_Description.md contenente la descrizione del progetto" />
     <MESSAGE value="ho aggiornato il design dei bottoni mettendo qualche emoji. ora sembra anni 80, hahaha" />
     <MESSAGE value="i'm writing the documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="i'm writing the documentation" />
+    <MESSAGE value="index.js documentation completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="index.js documentation completed" />
   </component>
 </project>

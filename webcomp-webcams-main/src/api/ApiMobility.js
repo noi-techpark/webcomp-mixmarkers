@@ -1,6 +1,11 @@
 import axios from "axios";
 import config from "./config";
 
+/*
+ *  callGet performs a GET request to the path with the given parameters.
+ *  path => path of the API endpoint
+ *  params => API request needs the parameters
+ */
 async function callGet(path, params) {
   console.log("Mobility path = " + config.mobilityAPI.API_BASE_URL + path);
   try {
@@ -15,6 +20,7 @@ async function callGet(path, params) {
   }
 }
 
+//fetchCreative function fetches creative industries' information from the API
 export async function fetchCreative(source) {
   try {
     const response = await callGet("/flat/CreativeIndustry", {
@@ -29,6 +35,7 @@ export async function fetchCreative(source) {
   }
 }
 
+//fetchParking function fetches parking slot information from the API
 export async function fetchParking(source) {
   try{
   const response = await callGet("/flat/ParkingStation/free/latest", {

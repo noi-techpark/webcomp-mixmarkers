@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: NOI Techpark <digital@noi.bz.it>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +16,7 @@
 <body>
 
 <div id="sidebar" class="sidebar">
+  <!-- sidebar with lateral buttons -->
   <button id="firstButton"><span class="emoji">⛅</span> <span class="button-text">Weather Forecast</span></button>
   <button id="secondButton"><span class="emoji">🏭</span> <span class="button-text">Creative Industry</span></button>
   <button id="thirdButton"><span class="emoji">🏞</span> <span class="button-text">Point of Interest</span></button>
@@ -23,6 +28,7 @@
 <script src="webcomp-weatherforecast.js"></script>
 
 <script>
+  //toggleSidebar is a function to show/hide the buttons of the sidebar
   function toggleSidebar() {
     const buttons = document.querySelectorAll('#sidebar button');
     buttons.forEach(button => {
@@ -30,7 +36,7 @@
     });
   }
 </script>
-<!-- sidebar -->
+<!-- button to show/hide the sidebar -->
 <button onclick="toggleSidebar()" id="sidebar-toggle" class="sidebar-toggle"><i class="fas fa-search"></i></button>
 
 </body>
