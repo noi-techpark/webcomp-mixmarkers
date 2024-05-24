@@ -9,7 +9,7 @@ module.exports = {
   mode: 'development',
   entry: './src/index.js',
   output: {
-    filename: 'webcomp-weatherforecast.js',
+    filename: 'webcomp-mixmarkers.js',
     clean: true
   },
   module: {

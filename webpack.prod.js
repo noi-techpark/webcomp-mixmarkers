@@ -9,7 +9,7 @@ module.exports = {
   mode: 'production',
   entry: './src/index.js',
   output: {
-    filename: 'webcomp-webcams.min.js',
+    filename: 'webcomp-mixmarkers.min.js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {

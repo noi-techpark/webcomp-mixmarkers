@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: NOI Techpark <digital@noi.bz.it>
+SPDX-License-Identifier: CC0-1.0
+-->
+
 #Emanuele Pippa & Anastasiia Guliaeva.
 To start this project, we used the weather-map created by the Noi Techpark team.
 

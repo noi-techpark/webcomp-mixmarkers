@@ -516,4 +516,4 @@ class OpendatahubWeatherForecast extends HTMLElement {
   }
 }
 
-customElements.define('webcomp-weatherforecast', OpendatahubWeatherForecast);
+customElements.define('webcomp-mixmarkers', OpendatahubWeatherForecast);

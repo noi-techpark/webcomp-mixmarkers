@@ -1,5 +1,5 @@
 {
-  "name": "webcomp-webcams",
+  "name": "webcomp-mixmarkers",
   "private": true,
   "scripts": {
     "build": "webpack --config webpack.prod.js",

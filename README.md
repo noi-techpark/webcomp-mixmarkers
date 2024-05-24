@@ -1,8 +1,12 @@
 <!--
 SPDX-FileCopyrightText: NOI Techpark <digital@noi.bz.it>
-
 SPDX-License-Identifier: CC0-1.0
 -->
+
+# Weather, Parking, Gastronomy, etc.
+This interactive map is a webcomponent that uses Mobility and Tourism APIs to display (switching with buttons): Weather Forecast, Creative Industries, Interesting Points & Activity, Gastronomy, and Parking Lots.
+As base map, we used [webcomp-webcams](https://github.com/noi-techpark/webcomp-webcams.git) component provided by NOI Techpark at the Open Data
+Hub.
 
 # Webcomponent Opendatahub Webcams
 
@@ -40,10 +44,10 @@ from opendatahub which are provided with a valid GPS point on a simple map.
 
 ## Usage
 
-Include the webcomponent script file `dist/webcomp-webcams.min.js` in your HTML and define the web component like this:
+Include the webcomponent script file `dist/webcomp-mixmarkers.min.js` in your HTML and define the web component like this:
 
 ```html
-<webcomp-webcams xxx="test" yyy="2"></webcomp-webcams>
+<webcomp-mixmarkers xxx="test" yyy="2"></webcomp-mixmarkers>
 ```
 
 ### Attributes

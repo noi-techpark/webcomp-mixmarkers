@@ -1,10 +1,10 @@
 {
-  "title": "Webcams Visualization",
-  "shortName": "Webcams",
-  "description": "A simple map that shows webcams available from Open Data Hub",
-  "descriptionAbstract": "A simple map that shows webcams available from Open Data Hub",
+  "title": "Weather, Parking, Gastronomy, etc.",
+  "shortName": "Weather, Gastronomy, Activity, Parking, Industry",
+  "description": "Interactive map that shows Weather Forecast, Creative Industries, Points of Interest, Gastronomy, and Parking Spots from Open Data Hub.",
+  "descriptionAbstract": "Map to show Weather, Industries, Points of Interest, Gastronomy, and Parking",
   "license": "AGPL-3.0-or-later",
-  "repositoryUrl": "https://github.com/noi-techpark/webcomp-webcams.git",
+  "repositoryUrl": "https://github.com/noi-techpark/webcomp-mixmarkers.git",
   "copyrightHolders": [
     {
       "name": "NOI",
@@ -15,10 +15,16 @@
   ],
   "authors": [
     {
-      "name": "Rudi Thoeni",
-      "email": "r.thoeni@noi.bz.it",
-      "organization": "NOI S.p.A",
-      "organizationUrl": "https://noi.bz.it"
+      "name": "Emanuele Pippa",
+      "email": "epippa55@gmail.com",
+      "organization": "None",
+      "organizationUrl": "https://github.com/epippa"
+    },
+    {
+      "name": "Anastasiia Guliaeva",
+      "email": "aguliaeva@unibz.com",
+      "organization": "None",
+      "organizationUrl": "https://github.com/kamikaros"
     }
   ],
   "image": "wcs-logo.png",
@@ -28,13 +34,13 @@
   "dist": {
     "basePath": "dist",
     "files": [
-      "webcomp-webcams.min.js"
+      "webcomp-mixmarkers.min.js"
     ],
     "scripts": [
     ]
   },
   "configuration": {
-    "tagName": "webcomp-webcams",
+    "tagName": "webcomp-mixmarkers",
     "options": [
       {
         "key": "centermap",
