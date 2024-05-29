@@ -8,6 +8,7 @@ import style__leaflet from 'leaflet/dist/leaflet.css';
 import style__markercluster from 'leaflet.markercluster/dist/MarkerCluster.css';
 import style from './scss/main.scss';
 import style__autocomplete from './scss/autocomplete.css';
+import style__Button from './scss/buttonClass.css';
 import { fetchWeatherForecast, fetchMunicipality, fetchInterestingPoints, fetchActivities, fetchGastronomy } from './api/ApiTourism.js';
 import { fetchCreative, fetchParking } from './api/ApiMobility';
 import { autocomplete } from './custom/autocomplete.js';
@@ -105,11 +106,16 @@ class OpendatahubWeatherForecast extends HTMLElement {
 
   //setupButtonHandlers sets up the event handlers for buttons
   setupButtonHandlers() {   //BUTTON HANDLER
-    const firstButton = document.getElementById("firstButton");
-    const secondButton = document.getElementById("secondButton");
-    const thirdButton = document.getElementById("thirdButton");
-    const fourthButton = document.getElementById("fourthButton");
-    const fifthButton = document.getElementById("fifthButton");
+
+    let root = this.shadowRoot;
+
+    const firstButton = root.getElementById("firstButton");
+    const secondButton = root.getElementById("secondButton");
+    const thirdButton = root.getElementById("thirdButton");
+    const fourthButton = root.getElementById("fourthButton");
+    const fifthButton = root.getElementById("fifthButton");
+
+    const togglebutton = root.getElementById("sidebar-toggle");
 
     if (firstButton) {
       firstButton.addEventListener("click", () => {
@@ -142,6 +148,20 @@ class OpendatahubWeatherForecast extends HTMLElement {
         this.callParkingApiDrawMap();
       });
     }
+    if (togglebutton) {
+      togglebutton.addEventListener("click", () => {
+        console.log('togglebutton clicked');
+        this.toggleSidebar();
+        //this.callParkingApiDrawMap();
+      });
+    }
+  }
+
+  async toggleSidebar() {
+    const buttons = this.shadowRoot.querySelectorAll('#sidebar button');
+    buttons.forEach(button => {
+      button.style.display = button.style.display === 'none' ? 'block' : 'none';
+    });
   }
 
   /*
@@ -475,12 +495,21 @@ class OpendatahubWeatherForecast extends HTMLElement {
         ${style__markercluster}
         ${style__leaflet}
         ${style__autocomplete}
+        ${style__Button}        
         ${style}
       </style>
       <div id="webcomponents-map">
         <div class="autocomplete" style="width:300px;"><input id="searchInput" type="text" name="myMunicipality" placeholder="Municipality"></div>
         <input id="searchHidden" type="hidden">
+        <div id="sidebar" class="sidebar">
+          <button id="firstButton"><span class="emoji">⛅</span> <span class="button-text">Weather Forecast</span></button>
+          <button id="secondButton"><span class="emoji">🏭</span> <span class="button-text">Creative Industry</span></button>
+          <button id="thirdButton"><span class="emoji">🏞</span> <span class="button-text">Point of Interest</span></button>
+          <button id="fourthButton"><span class="emoji">🍴</span> <span class="button-text">Gastronomy</span></button>
+          <button id="fifthButton"><span class="emoji">🅿️</span> <span class="button-text">Parking Spot</span></button>
+        </div>
         <div id="map" class="map"></div>
+        <button id="sidebar-toggle" class="sidebar-toggle"><i class="fas fa-search"></i></button>
       </div>
     `;
   }

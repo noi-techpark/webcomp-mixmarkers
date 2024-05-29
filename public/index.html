@@ -5,42 +5,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="buttonClass.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <title>Opendatahub Webcams</title>
-  
+  <meta charset="utf-8">    
 </head>
 
 <body>
 
-<div id="sidebar" class="sidebar">
-  <!-- sidebar with lateral buttons -->
-  <button id="firstButton"><span class="emoji">⛅</span> <span class="button-text">Weather Forecast</span></button>
-  <button id="secondButton"><span class="emoji">🏭</span> <span class="button-text">Creative Industry</span></button>
-  <button id="thirdButton"><span class="emoji">🏞</span> <span class="button-text">Point of Interest</span></button>
-  <button id="fourthButton"><span class="emoji">🍴</span> <span class="button-text">Gastronomy</span></button>
-  <button id="fifthButton"><span class="emoji">🅿️</span> <span class="button-text">Parking Spot</span></button>
-</div>
-
-<!-- <webcomp-mixmarkers xxx="test" yyy="2"></webcomp-mixmarkers> -->
-
 <webcomp-mixmarkers id="weather-forecast" centermap="46.641532,11.355583" zoommap="10"></webcomp-mixmarkers>
 <script src="webcomp-mixmarkers.js"></script>
-
-<script>
-  //toggleSidebar is a function to show/hide the buttons of the sidebar
-  function toggleSidebar() {
-    const buttons = document.querySelectorAll('#sidebar button');
-    buttons.forEach(button => {
-      button.style.display = button.style.display === 'none' ? 'block' : 'none';
-    });
-  }
-</script>
-<!-- button to show/hide the sidebar -->
-<button onclick="toggleSidebar()" id="sidebar-toggle" class="sidebar-toggle"><i class="fas fa-search"></i></button>
 
 </body>
 </html>
